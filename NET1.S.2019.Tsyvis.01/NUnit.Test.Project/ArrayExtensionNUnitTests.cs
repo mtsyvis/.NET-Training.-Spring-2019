@@ -60,5 +60,53 @@ namespace NUnit.Test.Project
             // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
+
+        [Test]
+        public static void MergeSort_RandomValueArray_WellSortedArray()
+        {
+            // Arrange
+            Random random = new Random();
+
+            int[] expectedArray = new int[BigArraySize];
+            int[] actualArray = new int[BigArraySize];
+
+            for (int i = 0; i < expectedArray.Length; i++)
+            {
+                expectedArray[i] = random.Next();
+            }
+
+            Array.Copy(expectedArray, actualArray, expectedArray.Length);
+
+            // Act
+            ArrayExtension.MergeSort(expectedArray);
+            Array.Sort(actualArray);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedArray, actualArray);
+        }
+
+        [Test]
+        public void MergeSort_RandomValueArray_WellSortedArrayInRange()
+        {
+            // Arrange
+            Random random = new Random();
+
+            int[] expectedArray = new int[BigArraySize];
+            int[] actualArray = new int[BigArraySize];
+
+            for (int i = 0; i < expectedArray.Length; i++)
+            {
+                expectedArray[i] = random.Next();
+            }
+
+            Array.Copy(expectedArray, actualArray, expectedArray.Length);
+
+            // Act
+            ArrayExtension.MergeSort(expectedArray, BigArraySize / 3, BigArraySize / 2);
+            Array.Sort(actualArray, BigArraySize / 3, BigArraySize / 2);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedArray, actualArray);
+        }
     }
 }
