@@ -1,17 +1,17 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NET1.S._2019.Tsyvis._01;
 
-namespace NUnit.Test.Project
+namespace MSTest.Test.Project
 {
-    [TestFixture]
-    public class ArrayExtensionNUnitTests
+    [TestClass]
+    public class ArrayExtensionMSUnitTests
     {
         private const int BigArraySize = 10000;
 
-        [Test]
+        [TestMethod]
         public void QuickSort_RandomValueArray_WellSortedArray()
-        {   
+        {
             // Arrange
             Random random = new Random();
 
@@ -22,18 +22,18 @@ namespace NUnit.Test.Project
             {
                 expectedArray[i] = random.Next();
             }
-            
+
             Array.Copy(expectedArray, actualArray, expectedArray.Length);
 
             // Act
             ArrayExtension.QuickSort(expectedArray);
             Array.Sort(actualArray);
-           
+
             // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
-        [Test]
+        [TestMethod]
         public void QuickSort_RandomValueArray_WellSortedArrayInRange()
         {
             // Arrange
@@ -50,14 +50,14 @@ namespace NUnit.Test.Project
             Array.Copy(expectedArray, actualArray, expectedArray.Length);
 
             // Act
-            ArrayExtension.QuickSort(expectedArray, BigArraySize/3, BigArraySize/2);
+            ArrayExtension.QuickSort(expectedArray, BigArraySize / 3, BigArraySize / 2);
             Array.Sort(actualArray, BigArraySize / 3, BigArraySize / 2);
 
             // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
-        [Test]
+        [TestMethod]
         public static void MergeSort_RandomValueArray_WellSortedArray()
         {
             // Arrange
@@ -81,7 +81,7 @@ namespace NUnit.Test.Project
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
-        [Test]
+        [TestMethod]
         public void MergeSort_RandomValueArray_WellSortedArrayInRange()
         {
             // Arrange
