@@ -172,5 +172,50 @@ namespace NUnit.Test.Project
             Assert.Throws<ArgumentOutOfRangeException>(() => ArrayExtension.MergeSort(array, 10, BigArraySize));
         }
         #endregion
+
+        #region FindMaxValue tests
+        [TestCase(new int[] { 1 }, ExpectedResult = 1)]
+        [TestCase(new int[] { 1, -20, 0, 100 }, ExpectedResult = 100)]
+        [TestCase(new int[] { int.MaxValue, 45, 100, 241341, int.MinValue }, ExpectedResult = int.MaxValue)]
+        public int FindMaxValue_WellValue(int[] array) => ArrayExtension.FindMaxValue(array);
+
+        [Test]
+        public void FindMaxValue_ArrayIsNull_ThrowArgumentNullException()
+        {
+            int[] array = null;
+
+            Assert.Throws<ArgumentNullException>(() => ArrayExtension.FindMaxValue(array));
+        }
+
+        [Test]
+        public void FindMaxValue_LengthOfArrayIs0_ThrowArgumentException()
+        {
+            int[] array = new int[] { };
+
+            Assert.Throws<ArgumentException>(() => ArrayExtension.FindMaxValue(array));
+        }
+        #endregion
+
+        #region FindIndex tests
+        [TestCase(new[] { 0.0001, 1.0002, -0.0003, 1, 0.0003, 1, -0.0003 }, ExpectedResult = 3)]
+        [TestCase(new[] { 1.0001, 1.0002, -3.0003, 1, 0.0003, 8.9, -0.0003, 0.901 }, ExpectedResult = null)]
+        public int? FindIndexTests(double[] array) => ArrayExtension.FindIndex(array);
+
+        [Test]
+        public void FindIndex_ArrayIsNull_ThrowArgumentNullException()
+        {
+            double[] array = null;
+
+            Assert.Throws<ArgumentNullException>(() => ArrayExtension.FindIndex(array));
+        }
+
+        [Test]
+        public void FindIndex_LengthOfArrayIs0_ThrowArgumentException()
+        {
+            double[] array = new double[] { };
+
+            Assert.Throws<ArgumentException>(() => ArrayExtension.FindIndex(array));
+        }
+        #endregion
     }
 }

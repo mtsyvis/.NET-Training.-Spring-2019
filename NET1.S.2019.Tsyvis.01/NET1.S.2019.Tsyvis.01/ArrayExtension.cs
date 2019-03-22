@@ -111,7 +111,69 @@ namespace NET1.S._2019.Tsyvis._01
         }
         #endregion
 
-        #region Private methods quick sort
+        #region Find value
+        /// <summary>
+        /// Find max value in a one-dimensional integer array by recursive invoke.
+        /// </summary>
+        /// <param name="array">The one-dimensional integer array to search.</param>
+        /// <returns>The max value in the one-dimensional integer array</returns>
+        /// <exception cref="ArgumentNullException">array is null.</exception>
+        /// <exception cref="ArgumentException">length of array is 0.</exception>
+        public static int FindMaxValue(int[] array)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException($"Array is null {nameof(array)}");
+            }
+
+            if (array.Length == 0)
+            {
+                throw new ArgumentException($"Length of array is 0 {nameof(array.Length)}");
+            }
+
+            return FindMaxValueRecursive(array, array.Length);
+        }
+        #endregion
+
+        #region Find index
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static int? FindIndex(double[] array)
+        {
+            if (array == null)
+                throw new ArgumentNullException($"Array is null {nameof(array)}");
+
+            if (array.Length == 0)
+                throw new ArgumentException($"Length of array is 0 {nameof(array.Length)}");
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                double[] leftArray = new double[array.Length];
+                for (int j = 0; j < i; j++)
+                {
+                    leftArray[j] = array[j];
+                }
+
+                double[] rightArray = new double[array.Length];
+                for (int k = 0, j = i + 1; j < array.Length; j++, k++)
+                {
+                    rightArray[k] = array[j];
+                }
+
+                if (DoubleArraySum(leftArray) == DoubleArraySum(rightArray))
+                {
+                    return i;
+                }
+            }
+
+            return null;
+        }
+        #endregion
+
+        #region Private methods
         private static void QuickSortImplementation(int[] array, int start, int end)
         {
             if (start >= end)
@@ -145,9 +207,7 @@ namespace NET1.S._2019.Tsyvis._01
             array[end] = temp;
             return marker;
         }
-        #endregion
 
-        #region Private methods merge sort
         private static void MergeSortImplementation(int[] input, int low, int high)
         {
             if (low < high)
@@ -206,6 +266,28 @@ namespace NET1.S._2019.Tsyvis._01
             {
                 input[low + i] = tmp[i];
             }
+        }
+
+        private static int FindMaxValueRecursive(int[] A, int n)
+        {
+            if (n == 1)
+            {
+                return A[0];
+            }
+
+            return Math.Max(A[n - 1], FindMaxValueRecursive(A, n - 1));
+        }
+
+        private static double DoubleArraySum(double[] array)
+        {
+            double sum = 0;
+
+            foreach (var value in array)
+            {
+                sum += value;
+            }
+
+            return sum;
         }
         #endregion
     }
