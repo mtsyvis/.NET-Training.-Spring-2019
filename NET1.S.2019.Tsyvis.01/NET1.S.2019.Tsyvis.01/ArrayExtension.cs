@@ -21,17 +21,17 @@ namespace NET1.S._2019.Tsyvis._01
         {
             if (array == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException($"array is null {nameof(array)}");
             }
 
             if (array.Length == 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"array length is zero {nameof(array.Length)}");
             }
 
             if (index < 0 || length < 0 || index + length > array.Length)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException($"index is less than the lower bound of array. {nameof(index)} -or- length is less than zero {nameof(length)}");
             }
 
             QuickSortImplementation(array, index, index + length - 1);
@@ -47,12 +47,12 @@ namespace NET1.S._2019.Tsyvis._01
         {
             if (array == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException($"array is null {nameof(array)}");
             }
 
             if (array.Length == 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"array length is zero {nameof(array.Length)}");
             }
 
             QuickSortImplementation(array, 0, array.Length - 1);
@@ -70,12 +70,12 @@ namespace NET1.S._2019.Tsyvis._01
         {
             if (array == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException($"array is null {nameof(array)}");
             }
 
             if (array.Length == 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"array length is zero {nameof(array.Length)}");
             }
 
             MergeSortImplementation(array, 0, array.Length - 1);
@@ -94,17 +94,17 @@ namespace NET1.S._2019.Tsyvis._01
         {
             if (array == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException($"array is null {nameof(array)}");
             }
 
             if (array.Length == 0)
             {
-                throw new ArgumentException();
+                throw new ArgumentException($"array length is zero {nameof(array.Length)}");
             }
 
             if (index < 0 || length < 0 || index + length > array.Length)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException($"index is less than the lower bound of array. {nameof(index)} -or- length is less than zero {nameof(length)}");
             }
 
             MergeSortImplementation(array, index, index + length - 1);
