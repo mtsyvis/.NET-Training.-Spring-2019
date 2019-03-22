@@ -7,6 +7,7 @@ namespace NET1.S._2019.Tsyvis._01
     /// </summary>
     public static class ArrayExtension
     {
+        #region Quick sort API
         /// <summary>
         /// Sorts the elements in a range of elements in a one-dimensional integer array using a quicksort algorithm.
         /// </summary>
@@ -56,7 +57,9 @@ namespace NET1.S._2019.Tsyvis._01
 
             QuickSortImplementation(array, 0, array.Length - 1);
         }
+        #endregion
 
+        #region Merge sort API
         /// <summary>
         /// Sorts the elements in one-dimensional integer array using a sort by merge algorithm.
         /// </summary>
@@ -106,7 +109,9 @@ namespace NET1.S._2019.Tsyvis._01
 
             MergeSortImplementation(array, index, index + length - 1);
         }
+        #endregion
 
+        #region Private methods quick sort
         private static void QuickSortImplementation(int[] array, int start, int end)
         {
             if (start >= end)
@@ -140,7 +145,9 @@ namespace NET1.S._2019.Tsyvis._01
             array[end] = temp;
             return marker;
         }
+        #endregion
 
+        #region Private methods merge sort
         private static void MergeSortImplementation(int[] input, int low, int high)
         {
             if (low < high)
@@ -200,5 +207,6 @@ namespace NET1.S._2019.Tsyvis._01
                 input[low + i] = tmp[i];
             }
         }
+        #endregion
     }
 }

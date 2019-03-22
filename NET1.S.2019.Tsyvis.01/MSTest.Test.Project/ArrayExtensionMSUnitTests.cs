@@ -9,12 +9,11 @@ namespace MSTest.Test.Project
     {
         private const int BigArraySize = 10000;
 
+        #region Quick sort tests
         [TestMethod]
         public void QuickSort_RandomValueArray_WellSortedArray()
         {
-            // Arrange
             Random random = new Random();
-
             int[] expectedArray = new int[BigArraySize];
             int[] actualArray = new int[BigArraySize];
 
@@ -24,21 +23,16 @@ namespace MSTest.Test.Project
             }
 
             Array.Copy(expectedArray, actualArray, expectedArray.Length);
-
-            // Act
             ArrayExtension.QuickSort(expectedArray);
             Array.Sort(actualArray);
 
-            // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
         [TestMethod]
         public void QuickSort_RandomValueArray_WellSortedArrayInRange()
         {
-            // Arrange
             Random random = new Random();
-
             int[] expectedArray = new int[BigArraySize];
             int[] actualArray = new int[BigArraySize];
 
@@ -48,21 +42,47 @@ namespace MSTest.Test.Project
             }
 
             Array.Copy(expectedArray, actualArray, expectedArray.Length);
-
-            // Act
             ArrayExtension.QuickSort(expectedArray, BigArraySize / 3, BigArraySize / 2);
             Array.Sort(actualArray, BigArraySize / 3, BigArraySize / 2);
 
-            // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
         [TestMethod]
+        public void QuickSort_ArrayIsNull_ThrowArgumentNullException()
+        {
+            int[] array = null;
+
+            Assert.ThrowsException<ArgumentNullException>(() => ArrayExtension.QuickSort(array));
+        }
+
+        [TestMethod]
+        public void QuickSort_ArrayLengthIsZero_ThrowArgumentException()
+        {
+            int[] array = new int[] { };
+
+            Assert.ThrowsException<ArgumentException>(() => ArrayExtension.QuickSort(array));
+            Assert.ThrowsException<ArgumentException>(() => ArrayExtension.QuickSort(array, 0, array.Length - 1));
+        }
+
+        [TestMethod]
+        public void QuickSort_InsexIsLessThanLowerBoundOfArrayOrLengthIsLessThanZero_ThrowArgumentOutOfRangeException()
+        {
+            Random random = new Random();
+            int[] array = new int[BigArraySize];
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, -4, 50));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, 20, -6));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, BigArraySize, 10));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, 10, BigArraySize));
+        }
+        #endregion
+
+        #region Merge sort tests
+        [TestMethod]
         public static void MergeSort_RandomValueArray_WellSortedArray()
         {
-            // Arrange
             Random random = new Random();
-
             int[] expectedArray = new int[BigArraySize];
             int[] actualArray = new int[BigArraySize];
 
@@ -72,21 +92,16 @@ namespace MSTest.Test.Project
             }
 
             Array.Copy(expectedArray, actualArray, expectedArray.Length);
-
-            // Act
             ArrayExtension.MergeSort(expectedArray);
             Array.Sort(actualArray);
 
-            // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
         [TestMethod]
         public void MergeSort_RandomValueArray_WellSortedArrayInRange()
         {
-            // Arrange
             Random random = new Random();
-
             int[] expectedArray = new int[BigArraySize];
             int[] actualArray = new int[BigArraySize];
 
@@ -96,56 +111,40 @@ namespace MSTest.Test.Project
             }
 
             Array.Copy(expectedArray, actualArray, expectedArray.Length);
-
-            // Act
             ArrayExtension.MergeSort(expectedArray, BigArraySize / 3, BigArraySize / 2);
             Array.Sort(actualArray, BigArraySize / 3, BigArraySize / 2);
 
-            // Assert
             CollectionAssert.AreEqual(expectedArray, actualArray);
         }
 
         [TestMethod]
-        public void QuickSortAndMergeSort_ArrayIsNull_ThrowArgumentNullException()
+        public void MergeSort_ArrayIsNull_ThrowArgumentNullException()
         {
-            // Arrange
             int[] array = null;
 
-            // Assert
-            Assert.ThrowsException<ArgumentNullException>(() => ArrayExtension.QuickSort(array));
             Assert.ThrowsException<ArgumentNullException>(() => ArrayExtension.MergeSort(array));
         }
 
         [TestMethod]
-        public void QuickSortAndMergeSort_ArrayLengthIsZero_ThrowArgumentException()
+        public void MergeSort_ArrayLengthIsZero_ThrowArgumentException()
         {
-            // Arrange
             int[] array = new int[] { };
 
-            // Assert
-            Assert.ThrowsException<ArgumentException>(() => ArrayExtension.QuickSort(array));
             Assert.ThrowsException<ArgumentException>(() => ArrayExtension.MergeSort(array));
-            Assert.ThrowsException<ArgumentException>(() => ArrayExtension.QuickSort(array, 0, array.Length - 1));
             Assert.ThrowsException<ArgumentException>(() => ArrayExtension.MergeSort(array, 0, array.Length - 1));
         }
 
         [TestMethod]
-        public void QuickSortAndMergeSort_InsexIsLessThanLowerBoundOfArrayOrLengthIsLessThanZero_ThrowArgumentOutOfRangeException()
+        public void MergeSort_InsexIsLessThanLowerBoundOfArrayOrLengthIsLessThanZero_ThrowArgumentOutOfRangeException()
         {
-            // Arrange
             Random random = new Random();
-
             int[] array = new int[BigArraySize];
 
-            // Assert
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, -4, 50));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.MergeSort(array, -4, 50));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, 20, -6));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.MergeSort(array, 20, -6));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, BigArraySize, 10));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.MergeSort(array, BigArraySize, 10));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.QuickSort(array, 10, BigArraySize));
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.MergeSort(array, 10, BigArraySize));
         }
+        #endregion
     }
 }
