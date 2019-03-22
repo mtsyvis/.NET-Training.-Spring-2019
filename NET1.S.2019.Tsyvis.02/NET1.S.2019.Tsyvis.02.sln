@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET1.S.2019.Tsyvis.02", "NET1.S.2019.Tsyvis.02\NET1.S.2019.Tsyvis.02.csproj", "{AAAEBB7F-5B54-4212-A600-946F5D06FF00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET1.S.2019.Tsyvis.02.Tests", "NET1.S.2019.Tsyvis.02.Tests\NET1.S.2019.Tsyvis.02.Tests.csproj", "{603BD216-23D6-4D49-BCE4-D025D8B78DCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAAEBB7F-5B54-4212-A600-946F5D06FF00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAEBB7F-5B54-4212-A600-946F5D06FF00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAEBB7F-5B54-4212-A600-946F5D06FF00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAEBB7F-5B54-4212-A600-946F5D06FF00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603BD216-23D6-4D49-BCE4-D025D8B78DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603BD216-23D6-4D49-BCE4-D025D8B78DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603BD216-23D6-4D49-BCE4-D025D8B78DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603BD216-23D6-4D49-BCE4-D025D8B78DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {28BA96C1-5983-4111-A748-4C70650D19D8}
+	EndGlobalSection
+EndGlobal
