@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCases>
+  <TestCase>
+    <UserName>John</UserName>
+    <ExpectedResult>Hello, John!</ExpectedResult>
+  </TestCase>
+  <TestCase>
+    <UserName>Alex</UserName>
+    <ExpectedResult>Hello, Alex!</ExpectedResult>
+  </TestCase>
+</TestCases>

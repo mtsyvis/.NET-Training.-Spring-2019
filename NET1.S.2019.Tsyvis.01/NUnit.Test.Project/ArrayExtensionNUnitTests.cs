@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using NET1.S._2019.Tsyvis._01;
+using System.Linq;
 
 namespace NUnit.Test.Project
 {
@@ -178,6 +179,14 @@ namespace NUnit.Test.Project
         [TestCase(new int[] { 1, -20, 0, 100 }, ExpectedResult = 100)]
         [TestCase(new int[] { int.MaxValue, 45, 100, 241341, int.MinValue }, ExpectedResult = int.MaxValue)]
         public int FindMaxValue_WellValue(int[] array) => ArrayExtension.FindMaxValue(array);
+
+        [Test]
+        public void FindMaxValue_ArrayRange()
+        {
+            int[] array = Enumerable.Range(0, 1000).ToArray();
+
+            Assert.AreEqual(ArrayExtension.FindMaxValue(array), 1000);
+        }
 
         [Test]
         public void FindMaxValue_ArrayIsNull_ThrowArgumentNullException()
