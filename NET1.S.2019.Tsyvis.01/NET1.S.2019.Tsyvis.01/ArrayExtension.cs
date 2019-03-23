@@ -137,10 +137,11 @@ namespace NET1.S._2019.Tsyvis._01
 
         #region Find index
         /// <summary>
-        /// 
+        /// Search in the real array of the element for which the sum of the elements 
+        /// on the left and the sum of the elements of the right parameter are equal.
         /// </summary>
-        /// <param name="array"></param>
-        /// <returns></returns>
+        /// <param name="array">The array to find index.</param>
+        /// <returns>The index in the real array.</returns>
         public static int? FindIndex(double[] array)
         {
             if (array == null)
