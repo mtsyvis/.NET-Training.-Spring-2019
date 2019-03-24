@@ -1,21 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NET1.S._2019.Tsyvis._02;
 using System;
 
 namespace NET1.S._2019.Tsyvis._02.MSUnit.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class BitManipulationsMSUnitTests
     {
         public TestContext TestContext { get; set; }
 
         [DataSource(
             "Microsoft.VisualStudio.TestTools.DataSource.XML",
-            "|DataDirectory|\\DDTShemaForTests.xml",
+            "|DataDirectory|\\DDT.Test.xml",
             "TestCase",
             DataAccessMethod.Sequential)]
-        [DeploymentItem("NET1.S.2019.Tsyvis.02.Tests.MS.DDT\\DDTShemaForTests.xml")]
-        [TestMethod()]
+        [DeploymentItem("NET1.S.2019.Tsyvis.02.Tests.MS.DDT\\DDT.Test.xml")]
+        [TestMethod]
         public void SayHello_HelloConcatWithConcreteUserName()
         {
             int numberSource = Convert.ToInt32(TestContext.DataRow["numberSource"]);

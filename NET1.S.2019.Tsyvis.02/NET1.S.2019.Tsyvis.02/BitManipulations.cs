@@ -29,7 +29,6 @@ namespace NET1.S._2019.Tsyvis._02
                 throw new ArgumentOutOfRangeException($"Start index and last index must be greater then 0 and less then 32. And start index nust be greater then last index. {nameof(i)} {nameof(j)}");
             }
 
-            int result = numberSource;
             int size = sizeof(int) * 8 - 1;
 
             for (int k = j - i + 1; k < size; k++)
@@ -38,14 +37,9 @@ namespace NET1.S._2019.Tsyvis._02
                 numberIn = numberIn & ~setZero;
             }
 
-            int temp = numberIn << i;
-            result = temp | result;
+            numberIn = numberIn << i;
 
-            temp = numberSource >> j;
-            temp = temp << j;
-
-            result = result | temp;
-            return result;
+            return numberIn | numberSource;
         }
     }
 }
