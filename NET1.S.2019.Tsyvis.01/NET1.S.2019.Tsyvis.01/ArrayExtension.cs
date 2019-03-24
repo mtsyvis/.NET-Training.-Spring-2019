@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NET1.S._2019.Tsyvis._01
 {
     /// <summary>
-    /// Class ArrayExtension
+    /// Provide methods for manipulating, sorting a one-dimensional integer array.
     /// </summary>
     public static class ArrayExtension
     {
@@ -174,6 +175,42 @@ namespace NET1.S._2019.Tsyvis._01
         }
         #endregion
 
+        #region Filter Array By Key
+        /// <summary>
+        /// Accepts an array of integers and filters it so that only 
+        /// the numbers containing the specified digit are left at the output.
+        /// </summary>
+        /// <param name="array">The array to filter.</param>
+        /// <param name="key">The positive number less then 10 to filter.</param>
+        /// <exception cref="ArgumentNullException">array is null</exception>
+        /// <exception cref="ArgumentOutOfRangeException">key is less then 0 or more then 9</exception>
+        public static void FilterArrayByKey(ref int[] array, int key)
+        {
+            if(array == null)
+            {
+                throw new ArgumentNullException($"array is null{nameof(array)}");
+            }
+
+            if (key > 9 || key < 0)
+            {
+                throw new ArgumentOutOfRangeException($"key is less then 0 or more then 9 {key}");
+            }
+
+            List<int> filterArray = new List<int>(array.Length);
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (IsDigitContain(array[i], key))
+                {
+                    filterArray.Add(array[i]);
+                }
+            }
+
+            array = filterArray.ToArray();
+        }
+
+        #endregion
+
         #region Private methods
         private static void QuickSortImplementation(int[] array, int start, int end)
         {
@@ -289,6 +326,23 @@ namespace NET1.S._2019.Tsyvis._01
             }
 
             return sum;
+        }
+
+        private static bool IsDigitContain(int digit, int key)
+        {
+            digit = Math.Abs(digit);
+
+            while (digit > 0)
+            {
+                if (digit % 10 == key)
+                {
+                    return true;
+                }
+
+                digit /= 10;
+            }
+
+            return false;
         }
         #endregion
     }
