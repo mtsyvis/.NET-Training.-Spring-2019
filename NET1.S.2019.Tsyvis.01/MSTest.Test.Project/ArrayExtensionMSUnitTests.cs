@@ -146,5 +146,75 @@ namespace MSTest.Test.Project
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.MergeSort(array, 10, BigArraySize));
         }
         #endregion
+
+        #region FilterArrayByKey tests
+        [TestMethod]
+        public void FilterArrayByKeyTest()
+        {
+            int[] actualArray = new int[] { 7, 1, 2, -375, 4, 5, 6, 7, 68, 69, 70, 15, 17 };
+            int[] expectedArray = new int[] { 7, -375, 7, 70, 17 };
+
+            ArrayExtension.FilterArrayByKey(ref actualArray, 7);
+
+            CollectionAssert.AreEqual(expectedArray, actualArray);
+        }
+
+        [TestMethod]
+        public void FilterArrayByKey_BigArrayZize_WellFiltration()
+        {
+            int key = 9;
+            int bigSize = 100000000;
+            int[] actualArray = new int[bigSize];
+
+            for (int i = 0; i < actualArray.Length; i++)
+            {
+                actualArray[i] = int.MaxValue;
+            }
+
+            actualArray[0] = key;
+
+            int[] expectedArray = new int[] { key };
+            ArrayExtension.FilterArrayByKey(ref actualArray, key);
+
+            CollectionAssert.AreEqual(expectedArray, actualArray);
+        }
+
+        [TestMethod]
+        public void FilterArrayByKey_ArrayLengthIs0_UnchangedArray()
+        {
+            int[] actualArray = new int[] { };
+            int[] expectedArray = new int[] { };
+
+            ArrayExtension.FilterArrayByKey(ref actualArray, 7);
+
+            CollectionAssert.AreEqual(expectedArray, actualArray);
+        }
+
+        [TestMethod]
+        public void FilterArrayByKey_ArrayIsNull_ThrowArgumentNullException()
+        {
+            int[] array = null;
+
+            Assert.ThrowsException<ArgumentNullException>(() => ArrayExtension.FindMaxValue(array));
+        }
+
+        [TestMethod]
+        public void FilterArrayByKey_KeyMoreThen9_ThrowArgumentOutOfRangeException()
+        {
+            int[] array = new int[] { 1, 2 };
+            int key = 20;
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.FilterArrayByKey(ref array, key));
+        }
+
+        [TestMethod]
+        public void FilterArrayByKey_KeyMoreLessThen0_ThrowArgumentOutOfRangeException()
+        {
+            int[] array = new int[] { 1, 2 };
+            int key = -4;
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => ArrayExtension.FilterArrayByKey(ref array, key));
+        }
+        #endregion
     }
 }
