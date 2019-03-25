@@ -132,7 +132,7 @@ namespace NET1.S._2019.Tsyvis._01
                 throw new ArgumentException($"Length of array is 0 {nameof(array.Length)}");
             }
 
-            return FindMaxValueRecursive(array, array.Length);
+            return FindMaxValueRecursive(array, 0, array.Length - 1);
         }
         #endregion
 
@@ -306,14 +306,16 @@ namespace NET1.S._2019.Tsyvis._01
             }
         }
 
-        private static int FindMaxValueRecursive(int[] A, int n)
+        private static int FindMaxValueRecursive(int[] array, int low, int high)
         {
-            if (n == 1)
+            if (low == high) 
             {
-                return A[0];
+                return array[low];
             }
 
-            return Math.Max(A[n - 1], FindMaxValueRecursive(A, n - 1));
+            int midleIndex = low + (high - low) / 2;
+
+            return Math.Max(FindMaxValueRecursive(array, low, midleIndex), FindMaxValueRecursive(array, midleIndex + 1, high));
         }
 
         private static double DoubleArraySum(double[] array)

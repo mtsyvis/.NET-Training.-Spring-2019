@@ -185,7 +185,7 @@ namespace NUnit.Test.Project
         {
             int[] array = Enumerable.Range(0, 100000000).ToArray();
 
-            Assert.AreEqual(ArrayExtension.FindMaxValue(array), 1000);
+            Assert.AreEqual(ArrayExtension.FindMaxValue(array), 99999999);
         }
 
         [Test]
