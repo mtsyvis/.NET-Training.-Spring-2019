@@ -3,22 +3,45 @@ using System.Collections.Generic;
 
 namespace NET1.S._2019.Tsyvis._03
 {
+    /// <summary>
+    /// Provide methods for manipulation with numbers.
+    /// </summary>
     public static class MathExtensions
     {
+        /// <summary>
+        /// Allows to calculate the nth degree root from a real number a by the Newton method with a given accuracy.
+        /// </summary>
+        /// <param name="number">The number for calculation</param>
+        /// <param name="power">The power for calculation</param>
+        /// <param name="accuracy">The accuracy for calculation</param>
+        /// <returns>Nth root</returns>
+        /// <exception cref="ArgumentException">power or accuracy is less then 0. -or- it is 
+        /// impossible to take the root of an even degree from a negative number</exception>
         public static double FindNthRoot(double number, int power, double accuracy)
         {
+            if(power < 0 || accuracy < 0)
+            {
+                throw new ArgumentException($"power or accuracy is less then 0 {nameof(power)} {nameof(accuracy)}");
+            }
+
+            if(power%2 == 0 && number < 0)
+            {
+                throw new ArgumentException($"it is impossible to take the root of an even degree from a negative number {nameof(power)} {nameof(number)}");
+            }
+
             double xPre = 1;
             double xK = 0.0d;
-            double subtraction = double.MaxValue;
+            double subtraction = accuracy + 1;
 
-            while (subtraction > accuracy)
+            while (subtraction >= accuracy)
             {
-                xK = ((number - 1.0) * xPre + number / Math.Pow(xPre, number - 1)) / number;
+               
+                xK = ((power - 1.0) * xPre + number / Math.Pow(xPre, (power - 1))) / power;
                 subtraction = Math.Abs(xK - xPre);
                 xPre = xK;
             }
 
-            return xK;
+            return accuracy * Math.Round(xK / accuracy);
         }
 
         /// <summary>

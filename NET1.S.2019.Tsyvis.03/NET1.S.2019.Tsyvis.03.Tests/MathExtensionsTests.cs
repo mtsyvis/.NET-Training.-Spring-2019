@@ -19,6 +19,29 @@ namespace NET1.S._2019.Tsyvis._03.Tests
         public double FindNthRootTest(double number, int power, double accuracy)
             => MathExtensions.FindNthRoot(number,power,accuracy);
 
+        [Test]
+        public void FindNthRoot_PowerIsLessThen0_ThrowArgumentException()
+        {
+            double a = 0.001, accurancy = 0.0001;
+            int n = -2;
+            Assert.Throws<ArgumentException>(() => MathExtensions.FindNthRoot(a, n, accurancy));
+        }
+
+        [Test]
+        public void FindNthRoot_AccuracyIsLessThen0_ThrowArgumentException()
+        {
+            double a = 0.001, accurancy = -1;
+            int n = 2;
+            Assert.Throws<ArgumentException>(() => MathExtensions.FindNthRoot(a, n, accurancy));
+        }
+
+        [Test]
+        public void FindNthRoot_NumberIsLessThen0AndPowerIsEven_ThrowArgumentException()
+        {
+            double a = -0.001, accurancy = 1;
+            int n = 2;
+            Assert.Throws<ArgumentException>(() => MathExtensions.FindNthRoot(a, n, accurancy));
+        }
         #endregion
 
         #region Next bigger than
