@@ -24,24 +24,22 @@ namespace NET1.S._2019.Tsyvis._03
                 throw new ArgumentException($"power or accuracy is less then 0 {nameof(power)} {nameof(accuracy)}");
             }
 
-            if(power%2 == 0 && number < 0)
+            if (power % 2 == 0 && number < 0) 
             {
                 throw new ArgumentException($"it is impossible to take the root of an even degree from a negative number {nameof(power)} {nameof(number)}");
             }
 
-            double xPre = 1;
-            double xK = 0.0d;
+            double xPre = 1, xK = 0.0d;
             double subtraction = accuracy + 1;
 
             while (subtraction >= accuracy)
             {
-               
                 xK = ((power - 1.0) * xPre + number / Math.Pow(xPre, (power - 1))) / power;
                 subtraction = Math.Abs(xK - xPre);
                 xPre = xK;
             }
 
-            return accuracy * Math.Round(xK / accuracy);
+            return xK;
         }
 
         /// <summary>
