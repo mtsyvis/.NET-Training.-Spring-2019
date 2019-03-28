@@ -19,6 +19,16 @@ namespace NET1.S._2019.Tsyvis._03.Tests
         public int GCDEuclideanCalculationTest(params int[] array)
             =>GCDCalculation.GCDEuclideanCalculation(out _, array);
 
+        [TestCase(1, 3, ExpectedResult = 1)]
+        [TestCase(1, 1, ExpectedResult = 1)]
+        [TestCase(10927782, -6902514, ExpectedResult = 846)]
+        public int GCDEuclideanCalculationFor2NumbersTest(int a, int b)
+            => GCDCalculation.GCDEuclideanCalculation(a, b, out _);
+
+        [TestCase(12, 6, 3, ExpectedResult = 3)]
+        public int GCDEuclideanCalculationFor3NumbersTest(int a, int b, int c)
+            => GCDCalculation.GCDEuclideanCalculation(a, b, c, out _);
+
         [Test]
         public void GCDEuclideanCalculation_NotArgument_ThrowArgumentNullException()
         {
@@ -44,6 +54,22 @@ namespace NET1.S._2019.Tsyvis._03.Tests
         public int GCDBinaryEuclideanCalculationTest(params int[] array)
         {
             var tuple = GCDCalculation.GCDBinaryEuclideanCalculation(array);
+            return tuple.gcd;
+        }
+
+        [TestCase(1, 3, ExpectedResult = 1)]
+        [TestCase(1, 1, ExpectedResult = 1)]
+        [TestCase(10927782, -6902514, ExpectedResult = 846)]
+        public int GCDBinaryEuclideanCalculationFor2NumbersTest(int a, int b)
+        {
+            var tuple = GCDCalculation.GCDBinaryEuclideanCalculation(a, b);
+            return tuple.gcd;
+        }
+
+        [TestCase(12, 6, 3, ExpectedResult = 3)]
+        public int GCDBinaryEuclideanCalculationFor3NumbersTest(int a, int b, int c)
+        {
+            var tuple = GCDCalculation.GCDBinaryEuclideanCalculation(a, b, c);
             return tuple.gcd;
         }
 
