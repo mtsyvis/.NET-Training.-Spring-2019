@@ -45,8 +45,20 @@ namespace NET1.S._2019.Tsyvis._04
         /// <returns>string representation of a real number</returns>
         public static string TransformToBinary(this double number)
         {
-            long bits = BitConverter.DoubleToInt64Bits(number);
-            return Convert.ToString(bits, 2).PadLeft(64, '0');
+            unsafe
+            {
+                var raw = *(ulong*)&number;
+                ulong remainder;
+                string result = string.Empty;
+                while (raw > 0)
+                {
+                    remainder = raw % 2;
+                    raw /= 2;
+                    result = remainder.ToString() + result;
+                }
+
+                return result.PadLeft(64, '0');
+            }
         }
     }
 }
