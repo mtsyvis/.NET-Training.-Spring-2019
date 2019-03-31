@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleExtension.cs" />
+    <Compile Include="Polynomial.cs" />
     <Compile Include="Transformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

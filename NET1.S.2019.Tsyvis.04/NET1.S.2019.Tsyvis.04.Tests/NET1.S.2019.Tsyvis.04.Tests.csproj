@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleExtensionTests.cs" />
+    <Compile Include="PolynomialTests.cs" />
     <Compile Include="TransformerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
