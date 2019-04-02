@@ -137,42 +137,45 @@ namespace NET1.S._2019.Tsyvis._01
         #endregion
 
         #region Find index
+
         /// <summary>
         /// Search in the real array of the element for which the sum of the elements 
         /// on the left and the sum of the elements of the right parameter are equal.
         /// </summary>
         /// <param name="array">The array to find index.</param>
         /// <returns>The index in the real array.</returns>
+        /// <exception cref="ArgumentException">length of array must be more then 2</exception>
+        /// <exception cref="ArgumentNullException">array is null</exception>
         public static int? FindIndex(double[] array)
         {
             if (array == null)
-                throw new ArgumentNullException($"Array is null {nameof(array)}");
-
-            if (array.Length == 0)
-                throw new ArgumentException($"Length of array is 0 {nameof(array.Length)}");
-
-            for (int i = 0; i < array.Length; i++)
             {
-                double[] leftArray = new double[array.Length];
-                for (int j = 0; j < i; j++)
-                {
-                    leftArray[j] = array[j];
-                }
+                throw new ArgumentNullException($"Array is null {nameof(array)}");
+            }
 
-                double[] rightArray = new double[array.Length];
-                for (int k = 0, j = i + 1; j < array.Length; j++, k++)
-                {
-                    rightArray[k] = array[j];
-                }
+            if (array.Length < 2)
+            {
+                throw new ArgumentException($"Length of array must be more then 2 {nameof(array.Length)}");
+            }
 
-                if (DoubleArraySum(leftArray) == DoubleArraySum(rightArray))
+            double sumArray = DoubleArraySum(array);
+            double sumLeftArray = array[0];
+            double sumRightArray = sumArray - array[0] - array[1];
+
+            for (int i = 1; i < array.Length - 1; i++)
+            {
+                if (Math.Abs(sumLeftArray - sumRightArray) < 0.000001)
                 {
                     return i;
                 }
+
+                sumLeftArray += array[i];
+                sumRightArray -= array[i + 1];
             }
 
             return null;
         }
+
         #endregion
 
         #region Filter Array By Key
