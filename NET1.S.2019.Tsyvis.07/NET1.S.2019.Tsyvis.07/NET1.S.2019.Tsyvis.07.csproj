@@ -42,11 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtension.cs" />
-    <Compile Include="ContainNumberDigitPredicate.cs" />
-    <Compile Include="EvenNumberPredicate.cs" />
-    <Compile Include="IPredicateNumber.cs" />
-    <Compile Include="PalindromeNumberPredicate.cs" />
+    <Compile Include="Filter\ContainNumberDigitPredicate.cs" />
+    <Compile Include="Filter\EvenNumberPredicate.cs" />
+    <Compile Include="Filter\IPredicateNumber.cs" />
+    <Compile Include="Filter\PalindromeNumberPredicate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transform\EnglishDictionaryCreator.cs" />
+    <Compile Include="Transform\IDictionariesCreator.cs" />
+    <Compile Include="Transform\ITransformDoubleRule.cs" />
+    <Compile Include="Transform\RussianDictionaryCreator.cs" />
+    <Compile Include="Transform\TransformDoubleToBinaryRepresentationRule.cs" />
+    <Compile Include="Transform\TransformDoubleToWordRule.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
