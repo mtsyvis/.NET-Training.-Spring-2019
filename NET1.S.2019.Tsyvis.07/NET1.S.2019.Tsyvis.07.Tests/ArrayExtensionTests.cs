@@ -1,10 +1,10 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using NET1.S._2019.Tsyvis._07.Filter;
+using NET1.S._2019.Tsyvis._07.Sort;
+using NET1.S._2019.Tsyvis._07.Transform;
 
 namespace NET1.S._2019.Tsyvis._07.Tests
 {
-    using NET1.S._2019.Tsyvis._07.Transform;
-
     [TestFixture]
     public class ArrayExtensionTests
     {
@@ -84,6 +84,54 @@ namespace NET1.S._2019.Tsyvis._07.Tests
             var rule = new TransformDoubleToWordRule(new RussianDictionaryCreator());
 
             Assert.AreEqual(expectedArray, actualArray.Transform(rule));
+        }
+
+        #endregion
+
+        #region Sort string array
+
+        [Test]
+        public void Sort_LengthDescendingComparerTest()
+        {
+            var actualArray = new string[] { "aaa", "bbbbb", "cccc", "32", "1" };
+            var expectedArray = new string[] { "bbbbb", "cccc", "aaa", "32", "1" };
+
+            actualArray.Sort(new LengthDescendingComparer());
+
+            Assert.AreEqual(expectedArray, actualArray);
+        }
+
+        [Test]
+        public void Sort_LengthAscendingComparerTest()
+        {
+            var actualArray = new string[] { "aaa", "bbbbb", "cccc", "32", "1" };
+            var expectedArray = new string[] { "1", "32", "aaa", "cccc", "bbbbb" };
+
+            actualArray.Sort(new LengthAscendingComparer());
+
+            Assert.AreEqual(expectedArray, actualArray);
+        }
+
+        [Test]
+        public void Sort_NumberOfEntriesAscendingComparerTest()
+        {
+            var actualArray = new string[] { "aba", "bbbbb", "bbcc", "32", "1bbb" };
+            var expectedArray = new string[] { "32", "aba", "bbcc", "1bbb", "bbbbb" };
+
+            actualArray.Sort(new NumberOfEntriesAscendingComparer('b'));
+
+            Assert.AreEqual(expectedArray, actualArray);
+        }
+
+        [Test]
+        public void Sort_NumberOfEntriesDescendingComparerTest()
+        {
+            var actualArray = new string[] { "aba", "bbbbb", "bbcc", "32", "1bbb" };
+            var expectedArray = new string[] { "bbbbb", "1bbb", "bbcc", "aba", "32" };
+
+            actualArray.Sort(new NumberOfEntriesDescendingComparer('b'));
+
+            Assert.AreEqual(expectedArray, actualArray);
         }
 
         #endregion

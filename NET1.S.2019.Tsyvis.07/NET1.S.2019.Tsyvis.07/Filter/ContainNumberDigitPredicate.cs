@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NET1.S._2019.Tsyvis._07
+namespace NET1.S._2019.Tsyvis._07.Filter
 {
     /// <summary>
     /// Implement <see cref="IPredicateNumber"/>.
