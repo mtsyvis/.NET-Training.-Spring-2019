@@ -99,5 +99,40 @@ namespace NET1.S._2019.Tsyvis._04.Tests
 
             Assert.AreEqual(actual, expected);
         }
+
+        [Test]
+        public void MultiplicationPolynomialByPolynomialTest1()
+        {
+            var a = new Polynomial(1, 0, -1);
+            var b = new Polynomial(1, 1);
+            var expected = new Polynomial(1,1,-1,-1);
+
+            Polynomial actual = a * b;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void MultiplicationPolynomialByPolynomialTest2()
+        {
+            var a = new Polynomial(3, 2, -4);
+            var b = new Polynomial(2, 0, 1);
+            var expected = new Polynomial(6, 4, -5, 2, -4);
+
+            Polynomial actual = a * b;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ClonePolynomialTest()
+        {
+            var a = new Polynomial(3, 2, -4);
+            Polynomial b = null;
+
+            Assert.IsTrue(b == null);
+            Assert.IsTrue(a.Equals(a.Clone()));
+            Assert.AreEqual(a, a.Clone());
+        }
     }
 }

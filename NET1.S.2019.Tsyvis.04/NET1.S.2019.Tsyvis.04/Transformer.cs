@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace NET1.S._2019.Tsyvis._04
@@ -43,7 +42,7 @@ namespace NET1.S._2019.Tsyvis._04
                 wordBilder.Append(word);
             }
 
-            return  wordBilder.ToString();
+            return wordBilder.ToString();
         }
     }
 }
