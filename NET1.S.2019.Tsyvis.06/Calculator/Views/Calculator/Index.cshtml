@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <form action="/Calculator/CalculateGcd" method="post">
+        <div>
+            <label for="algorithm">Input algorithm to calculate:</label>
+            <select name="algorithm" id="algorithm" class="checkbox h5">
+                <option value="binary">Stain algorithm</option>
+                <option value="euclidean">Euclidean algorithm</option>
+            </select>
+        </div>
+        <div>
+            <label for="number1">Input first number:</label>
+            <input class="form-control" name="number1" id="number1" placeholder="-125" />
+        </div>
+        <div>
+            <label for="number2">Input second number:</label>
+            <input class="form-control" name="number2" id="number2" placeholder="25" />
+        </div>
+        <div>
+            <button type="submit" class="btn btn-info">Calculate</button>
+        </div>
+    </form>
+</div>
+

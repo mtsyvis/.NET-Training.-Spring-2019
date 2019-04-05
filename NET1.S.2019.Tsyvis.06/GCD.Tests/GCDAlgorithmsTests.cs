@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using NET1.S._2019.Tsyvis._06;
 
 namespace GCD.Tests
