@@ -156,11 +156,15 @@ namespace NET1.S._2019.Tsyvis._04
         /// <param name="a">The first polynomial to compare.</param>
         /// <param name="b">The second polynomial to compare.</param>
         /// <returns>true if the coefficients of a is different from the coefficients of b; otherwise, false.</returns>
-        public static bool operator !=(Polynomial a, Polynomial b)
+        public static bool operator !=(Polynomial left, Polynomial right)
         {
+            if ((ReferenceEquals(left, null) && !ReferenceEquals(right, null)) ||
+                (ReferenceEquals(right, null) && !ReferenceEquals(left, null)))
+            {
+                return true;
+            }
 
-
-            return !a.Equals(b);
+            return !left.Equals(right);
         }
 
         public override bool Equals(object obj)

@@ -125,12 +125,16 @@ namespace NET1.S._2019.Tsyvis._04.Tests
         }
 
         [Test]
-        public void ClonePolynomialTest()
+        public void EqualsPolynomialTest()
         {
             var a = new Polynomial(3, 2, -4);
             Polynomial b = null;
 
+            Assert.IsTrue(a != null);
+            Assert.IsTrue(null != a);
+            Assert.IsTrue(null == b);
             Assert.IsTrue(b == null);
+            Assert.IsTrue(a == (Polynomial)a.Clone());
             Assert.IsTrue(a.Equals(a.Clone()));
             Assert.AreEqual(a, a.Clone());
         }
