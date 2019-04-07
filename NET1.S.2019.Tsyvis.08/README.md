@@ -3,6 +3,8 @@
 - [Task2](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07/Sort%20jagged%20array)
 - [ArrayExtension Task2](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07/ArrayExtension.cs)
 
+## Tasks
+
 1. **(deadline - 05.04.2019, 24.00)**(*"3-ий перезапуск" НОД-а*) Есть унификация алгоритма нахождения НОД-а для двух целочисленных значений в виде интерфейса 
 
 		 public interface IGcdAlgorithm
