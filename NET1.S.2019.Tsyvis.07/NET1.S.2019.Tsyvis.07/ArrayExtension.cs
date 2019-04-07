@@ -6,6 +6,8 @@ using NET1.S._2019.Tsyvis._07.Sort;
 
 namespace NET1.S._2019.Tsyvis._07
 {
+    using NET1.S._2019.Tsyvis._07.Sort_jagged_array;
+
     /// <summary>
     /// Provide manipulation with array.
     /// </summary>
@@ -78,6 +80,34 @@ namespace NET1.S._2019.Tsyvis._07
             }
 
             QuickSort(array, comparer);
+        }
+
+        /// <summary>
+        /// Sorts the jagged array.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <param name="comparer">The comparer.</param>
+        /// <exception cref="ArgumentNullException">
+        /// comparer is null
+        /// or
+        /// matrix has null elements
+        /// </exception>
+        public static void SortJaggedArray(this int[][] matrix, IComparer<int[]> comparer)
+        {
+            if (comparer == null)
+            {
+                throw new ArgumentNullException($"comparer is null{nameof(comparer)}");
+            }
+
+            foreach (var i in matrix)
+            {
+                if (i == null)
+                {
+                    throw new ArgumentNullException($"matrix has null elements{nameof(i)}");
+                }
+            }
+
+            Array.Sort(matrix, comparer);
         }
 
         #endregion

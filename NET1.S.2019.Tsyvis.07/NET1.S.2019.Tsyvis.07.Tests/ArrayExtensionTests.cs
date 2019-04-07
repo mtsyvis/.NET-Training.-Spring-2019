@@ -5,6 +5,10 @@ using NET1.S._2019.Tsyvis._07.Transform;
 
 namespace NET1.S._2019.Tsyvis._07.Tests
 {
+    using System;
+
+    using NET1.S._2019.Tsyvis._07.Sort_jagged_array;
+
     [TestFixture]
     public class ArrayExtensionTests
     {
@@ -132,6 +136,141 @@ namespace NET1.S._2019.Tsyvis._07.Tests
             actualArray.Sort(new NumberOfEntriesDescendingComparer('b'));
 
             Assert.AreEqual(expectedArray, actualArray);
+        }
+
+        #endregion
+
+        #region Sort jagged array
+
+        [Test]
+        public void SortJaggedArray_JaggedArrayMaxValueDescendingComparerTest()
+        {
+            int[][] actualMatrix = new int[4][];
+            actualMatrix[0] = new int[] { 10, 9, 109, 20 };
+            actualMatrix[1] = new int[] { 1000 };
+            actualMatrix[2] = new int[] { 120, 80, 700 };
+            actualMatrix[3] = new int[] { 4, 2 };
+
+            int[][] expectedMatrix = new int[4][];
+            expectedMatrix[0] = new int[] { 1000 };
+            expectedMatrix[1] = new int[] { 120, 80, 700 };
+            expectedMatrix[2] = new int[] { 10, 9, 109, 20 };
+            expectedMatrix[3] = new int[] { 4, 2 };
+
+            actualMatrix.SortJaggedArray(new JaggedArrayMaxValueDescendingComparer());
+
+            CollectionAssert.AreEqual(expectedMatrix, actualMatrix);
+        }
+
+        [Test]
+        public void SortJaggedArray_JaggedArrayMaxValueAscendingComparerTest()
+        {
+            int[][] actualMatrix = new int[4][];
+            actualMatrix[0] = new int[] { 10, 9, 109, 20 };
+            actualMatrix[1] = new int[] { 1000 };
+            actualMatrix[2] = new int[] { 120, 80, 700 };
+            actualMatrix[3] = new int[] { 4, 2 };
+
+            int[][] expectedMatrix = new int[4][];
+            expectedMatrix[0] = new int[] { 4, 2 };
+            expectedMatrix[1] = new int[] { 10, 9, 109, 20 };
+            expectedMatrix[2] = new int[] { 120, 80, 700 };
+            expectedMatrix[3] = new int[] { 1000 };
+
+            actualMatrix.SortJaggedArray(new JaggedArrayMaxValueAscendingComparer());
+
+            CollectionAssert.AreEqual(expectedMatrix, actualMatrix);
+        }
+
+        [Test]
+        public void SortJaggedArray_JaggedArrayMinValueAscendingComparerTest()
+        {
+            int[][] actualMatrix = new int[4][];
+            actualMatrix[0] = new int[] { 10, 9, 109, 20 };
+            actualMatrix[1] = new int[] { 1000, 600, -100 };
+            actualMatrix[2] = new int[] { 120, 80, 700 };
+            actualMatrix[3] = new int[] { 4, 2 };
+
+            int[][] expectedMatrix = new int[4][];
+            expectedMatrix[0] = new int[] { 1000, 600, -100 };
+            expectedMatrix[1] = new int[] { 4, 2 };
+            expectedMatrix[2] = new int[] { 10, 9, 109, 20 };
+            expectedMatrix[3] = new int[] { 120, 80, 700 };
+
+            actualMatrix.SortJaggedArray(new JaggedArrayMinValueAscendingComparer());
+
+            CollectionAssert.AreEqual(expectedMatrix, actualMatrix);
+        }
+
+        [Test]
+        public void SortJaggedArray_JaggedArrayMinValueDescendingComparerTest()
+        {
+            int[][] actualMatrix = new int[4][];
+            actualMatrix[0] = new int[] { 10, 9, 109, 20 };
+            actualMatrix[1] = new int[] { 1000, 600, -100 };
+            actualMatrix[2] = new int[] { 120, 80, 700 };
+            actualMatrix[3] = new int[] { 4, 2 };
+
+            int[][] expectedMatrix = new int[4][];
+            expectedMatrix[0] = new int[] { 120, 80, 700 };
+            expectedMatrix[1] = new int[] { 10, 9, 109, 20 };
+            expectedMatrix[2] = new int[] { 4, 2 };
+            expectedMatrix[3] = new int[] { 1000, 600, -100 };
+
+            actualMatrix.SortJaggedArray(new JaggedArrayMinValueDescendingComparer());
+
+            CollectionAssert.AreEqual(expectedMatrix, actualMatrix);
+        }
+
+        [Test]
+        public void SortJaggedArray_JaggedArraySumValuesDescendingComparerTest()
+        {
+            int[][] actualMatrix = new int[4][];
+            actualMatrix[0] = new int[] { 10, 9, 109, 20 };
+            actualMatrix[1] = new int[] { 1000, 600, -100 };
+            actualMatrix[2] = new int[] { 120, 80, 700 };
+            actualMatrix[3] = new int[] { 4, 2 };
+
+            int[][] expectedMatrix = new int[4][];
+            expectedMatrix[0] = new int[] { 1000, 600, -100 };
+            expectedMatrix[1] = new int[] { 120, 80, 700 };
+            expectedMatrix[2] = new int[] { 10, 9, 109, 20 };
+            expectedMatrix[3] = new int[] { 4, 2 };
+
+            actualMatrix.SortJaggedArray(new JaggedArraySumValuesDescendingComparer());
+
+            CollectionAssert.AreEqual(expectedMatrix, actualMatrix);
+        }
+
+        [Test]
+        public void SortJaggedArray_JaggedArraySumValuesAscendingComparerTest()
+        {
+            int[][] actualMatrix = new int[4][];
+            actualMatrix[0] = new int[] { 10, 9, 109, 20 };
+            actualMatrix[1] = new int[] { 1000, 600, -100 };
+            actualMatrix[2] = new int[] { 120, 80, 700 };
+            actualMatrix[3] = new int[] { 4, 2 };
+
+            int[][] expectedMatrix = new int[4][];
+            expectedMatrix[0] = new int[] { 4, 2 };
+            expectedMatrix[1] = new int[] { 10, 9, 109, 20 };
+            expectedMatrix[2] = new int[] { 120, 80, 700 };
+            expectedMatrix[3] = new int[] { 1000, 600, -100 };
+
+            actualMatrix.SortJaggedArray(new JaggedArraySumValuesAscendingComparer());
+
+            CollectionAssert.AreEqual(expectedMatrix, actualMatrix);
+        }
+
+        [Test]
+        public void SortJaggedArray_MatrixHasNullValues_ThrowArgumentNullException()
+        {
+            var actualMatrix = new int[2][];
+            actualMatrix[0] = new int[] { 2,2};
+            actualMatrix[1] = null;
+
+            Assert.Throws<ArgumentNullException>(
+                () => actualMatrix.SortJaggedArray(new JaggedArrayMaxValueAscendingComparer()));
         }
 
         #endregion

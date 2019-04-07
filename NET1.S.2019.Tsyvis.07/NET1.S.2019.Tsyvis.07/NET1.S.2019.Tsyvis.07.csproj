@@ -47,6 +47,12 @@
     <Compile Include="Filter\IPredicateNumber.cs" />
     <Compile Include="Filter\PalindromeNumberPredicate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sort jagged array\JaggedArrayMaxValueAscendingComparer.cs" />
+    <Compile Include="Sort jagged array\JaggedArrayMaxValueDescendingComparer.cs" />
+    <Compile Include="Sort jagged array\JaggedArrayMinValueAscendingComparer.cs" />
+    <Compile Include="Sort jagged array\JaggedArrayMinValueDescendingComparer.cs" />
+    <Compile Include="Sort jagged array\JaggedArraySumValuesAscendingComparer.cs" />
+    <Compile Include="Sort jagged array\JaggedArraySumValuesDescendingComparer.cs" />
     <Compile Include="Sort\NumberOfEntriesAscendingComparer.cs" />
     <Compile Include="Sort\NumberOfEntriesDescendingComparer.cs" />
     <Compile Include="Sort\LengthAscendingComparer.cs" />
