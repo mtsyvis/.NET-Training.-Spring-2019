@@ -54,6 +54,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookListServiceTests.cs" />
     <Compile Include="GCDCalculationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookService\BookService.csproj">
+      <Project>{2cac97aa-f00f-4937-a6b9-78ef8a27694b}</Project>
+      <Name>BookService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GcdCalculationDecorator\GcdCalculationDecorator.csproj">
       <Project>{b2c88bc6-1bf0-4c89-b40d-51105e220464}</Project>
       <Name>GcdCalculationDecorator</Name>

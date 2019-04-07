@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GcdCalculationDecorator", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET1.S.2019.Tsyvis.08", "NET1.S.2019.Tsyvis.08\NET1.S.2019.Tsyvis.08.csproj", "{DCE3FD11-5AC7-48CE-932B-A67D10115425}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookService", "BookService\BookService.csproj", "{2CAC97AA-F00F-4937-A6B9-78EF8A27694B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DCE3FD11-5AC7-48CE-932B-A67D10115425}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE3FD11-5AC7-48CE-932B-A67D10115425}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE3FD11-5AC7-48CE-932B-A67D10115425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CAC97AA-F00F-4937-A6B9-78EF8A27694B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CAC97AA-F00F-4937-A6B9-78EF8A27694B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CAC97AA-F00F-4937-A6B9-78EF8A27694B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CAC97AA-F00F-4937-A6B9-78EF8A27694B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
