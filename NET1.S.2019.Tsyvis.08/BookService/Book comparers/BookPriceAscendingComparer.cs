@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using BookService.Entities;
 
 namespace BookService.Book_comparers
 {
     /// <summary>
     /// Provide comparing two books by price.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.IComparer{BookService.Book}" />
+    /// <seealso cref="Book" />
     public class BookPriceAscendingComparer : IComparer<Book>
     {
         /// <summary>

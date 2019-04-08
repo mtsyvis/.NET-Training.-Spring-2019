@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BookService.Entities;
 
 namespace BookService.Book_comparers
 {

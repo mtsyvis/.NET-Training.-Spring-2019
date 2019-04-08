@@ -44,10 +44,13 @@
     <Compile Include="Book comparers\BookAuthorAscendingComparer.cs" />
     <Compile Include="Book comparers\BookPriceAscendingComparer.cs" />
     <Compile Include="Book comparers\BookYearOfPublishingAscendingComparer.cs" />
-    <Compile Include="Book.cs" />
-    <Compile Include="BookListService.cs" />
-    <Compile Include="FakeBookListStorage.cs" />
-    <Compile Include="IBookListStorage.cs" />
+    <Compile Include="Book predicates\AuthorPredicate.cs" />
+    <Compile Include="Book predicates\YearOfPublishingPredicate.cs" />
+    <Compile Include="Entities\Book.cs" />
+    <Compile Include="Interfaces\IPredicate.cs" />
+    <Compile Include="Services\BookListService.cs" />
+    <Compile Include="Storages\FakeBookListStorage.cs" />
+    <Compile Include="Interfaces\IBookListStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

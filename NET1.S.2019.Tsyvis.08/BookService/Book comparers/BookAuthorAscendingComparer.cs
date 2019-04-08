@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BookService.Entities;
 
 namespace BookService.Book_comparers
 {
@@ -6,7 +7,7 @@ namespace BookService.Book_comparers
     /// Provide comparing two books by author.
     /// </summary>
     /// <seealso cref="System.Collections.Generic.IComparer{BookService.Book}" />
-    class BookAuthorAscendingComparer : IComparer<Book>
+    public class BookAuthorAscendingComparer : IComparer<Book>
     {
         /// <summary>
         /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.

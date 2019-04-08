@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using BookService.Entities;
+using BookService.Interfaces;
 
-namespace BookService
+namespace BookService.Services
 {
     /// <summary>
     /// Provide manipulation with books.
@@ -14,9 +16,10 @@ namespace BookService
         private IBookListStorage bookListStorage;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="BookListService"/> class.
         /// </summary>
-        /// <param name="storage"></param>
+        /// <param name="storage">The storage.</param>
+        /// <exception cref="ArgumentNullException">storage is null</exception>
         public BookListService(IBookListStorage storage)
         {
             this.bookListStorage = storage ?? throw new ArgumentNullException($"storage is null{nameof(storage)}");
@@ -75,35 +78,22 @@ namespace BookService
         }
 
         /// <summary>
-        /// Find books by author.
+        /// Finds the by tag.
         /// </summary>
-        /// <param name="author">The author</param>
+        /// <param name="predicate">The predicate.</param>
         /// <returns>founded books</returns>
-        public IEnumerable<Book> FindByTag(string author)
+        /// <exception cref="ArgumentNullException">predicate is null</exception>
+        public IEnumerable<Book> FindByTag(IPredicate predicate)
         {
-            var foundBooks = new List<Book>();
-            foreach (var book in this.Books)
+            if (predicate is null)
             {
-                if (book.Author == author)
-                {
-                    foundBooks.Add(book);
-                }
+                throw new ArgumentNullException($"predicate is null {nameof(predicate)}");
             }
 
-            return foundBooks;
-        }
-
-        /// <summary>
-        /// Find books by year of publishing.
-        /// </summary>
-        /// <param name="author">The year of publishing</param>
-        /// <returns>founded books</returns>
-        public IEnumerable<Book> FindByTag(int yearOfPublishing)
-        {
-            var foundBooks = new List<Book>();
+            var foundBooks = new List<Book>() { };
             foreach (var book in this.Books)
             {
-                if (book.YearOfPublishing == yearOfPublishing)
+                if (predicate.IsMatched(book))
                 {
                     foundBooks.Add(book);
                 }

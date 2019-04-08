@@ -1,11 +1,14 @@
 ﻿using System;
 using NUnit.Framework;
-using BookService;
+using BookService.Entities;
+using BookService.Storages;
+using BookService.Services;
 using System.Collections.Generic;
+using BookService.Book_comparers;
 
 namespace NET1.S._2019.Tsyvis._08.Tests
 {
-    using BookService.Book_comparers;
+    using BookService.Book_predicates;
 
     [TestFixture]
     public class BookListServiceTests
@@ -48,16 +51,18 @@ namespace NET1.S._2019.Tsyvis._08.Tests
         }
 
         [Test]
-        public void FindByTag_ByAuthor_WellFinding()
+        public void FindByTag_AuthorPredicate_WellFinding()
         {
             var service = new BookListService(new FakeBookListStorage());
-            var book = new Book("124143", "Bart de Smet", "C# 4.0 Unleashed", "Minsk", 2011, 300, 30);
-            service.Add(book);
-            string author = book.Author;
+            var book1 = new Book("124143", "Bart de Smet", "C# 4.0 Unleashed", "Minsk", 2011, 300, 30);
+            var book2 = new Book("124143", "Bart de Smet", "C# 5.0 Unleashed", "Piter", 2011, 300, 30);
 
-            IEnumerable<Book> expectedBooks = new Book[] { book };
+            service.Add(book1);
+            service.Add(book2);
+            IEnumerable<Book> expectedBooks = new Book[] { book1, book2 };
+            string author = "Bart de Smet";
 
-            Assert.AreEqual(expectedBooks, service.FindByTag(author));
+            Assert.AreEqual(expectedBooks, service.FindByTag(new AuthorPredicate(author)));
         }
 
         [Test]

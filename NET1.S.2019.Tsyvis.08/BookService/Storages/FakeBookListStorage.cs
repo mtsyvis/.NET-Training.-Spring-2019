@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using BookService.Interfaces;
+using BookService.Entities;
 
-namespace BookService
+namespace BookService.Storages
 {
     /// <summary>
     /// Provide saving and loading books.
