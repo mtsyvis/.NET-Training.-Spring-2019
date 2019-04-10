@@ -87,32 +87,39 @@ namespace NET1.S._2019.Tsyvis._07
         /// </summary>
         /// <param name="matrix">The matrix.</param>
         /// <param name="comparer">The comparer.</param>
+        /// <returns>sorted array</returns>
         /// <exception cref="ArgumentNullException">
         /// comparer is null
-        /// or
-        /// matrix has null elements
         /// </exception>
-        public static void SortJaggedArray(this int[][] matrix, IComparer<int[]> comparer)
+        public static int[][] SortJaggedArray(this int[][] array, IComparer<int[]> comparer)
         {
             if (comparer == null)
             {
                 throw new ArgumentNullException($"comparer is null{nameof(comparer)}");
             }
 
-            foreach (var i in matrix)
-            {
-                if (i == null)
-                {
-                    throw new ArgumentNullException($"matrix has null elements{nameof(i)}");
-                }
-            }
+            var copyArray = GetCopyJuggedArray(array);
 
-            Array.Sort(matrix, comparer);
+            Array.Sort(copyArray, comparer);
+
+            return copyArray;
         }
 
         #endregion
 
         #region Helper methods
+
+        private static int[][] GetCopyJuggedArray(int[][] source)
+        {
+            var copyArray = new int[source.Length][];
+
+            for (int i = 0; i < source.Length; i++)
+            {
+                copyArray[i] = (int[])source[i].Clone();
+            }
+
+            return copyArray;
+        }
 
         private static void QuickSort(string[] array, IComparer<string> comparer)
         {

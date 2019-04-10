@@ -21,17 +21,22 @@ namespace NET1.S._2019.Tsyvis._07.Sort_jagged_array
         /// </returns>
         public int Compare(int[] x, int[] y)
         {
-            if (this.GetMaxValue(x) > this.GetMaxValue(y))
+            if (x is null && y is null)
+            {
+                return 0;
+            }
+
+            if (x is null)
             {
                 return 1;
             }
 
-            if (this.GetMaxValue(x) < this.GetMaxValue(y))
+            if (y is null)
             {
                 return -1;
             }
 
-            return 0;
+            return this.GetMaxValue(x) - this.GetMaxValue(y);
         }
 
         private int GetMaxValue(int[] array)

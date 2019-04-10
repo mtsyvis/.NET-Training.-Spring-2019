@@ -21,17 +21,22 @@ namespace NET1.S._2019.Tsyvis._07.Sort_jagged_array
         /// </returns>
         public int Compare(int[] x, int[] y)
         {
-            if (this.GetMinValue(x) > this.GetMinValue(y))
+            if (x is null && y is null)
+            {
+                return 0;
+            }
+
+            if (x is null)
             {
                 return 1;
             }
 
-            if (this.GetMinValue(x) < this.GetMinValue(y))
+            if (y is null)
             {
                 return -1;
             }
 
-            return 0;
+            return this.GetMinValue(x) - this.GetMinValue(y);
         }
 
         private int GetMinValue(int[] array)
