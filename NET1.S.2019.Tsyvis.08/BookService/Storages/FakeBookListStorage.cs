@@ -13,7 +13,7 @@ namespace BookService.Storages
         /// <summary>
         /// The books
         /// </summary>
-        private IEnumerable<Book> books = new Book[]
+        private static IEnumerable<Book> storedBooks = new Book[]
                                               {
                                                   new Book(
                                                       "9999999992",
@@ -49,7 +49,7 @@ namespace BookService.Storages
         /// </returns>
         public IEnumerable<Book> Load()
         {
-            return this.books;
+            return storedBooks;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace BookService.Storages
         /// <param name="books">books to saving</param>
         public void Save(IEnumerable<Book> books)
         {
-            this.books = books;
+            storedBooks = books;
         }
     }
 }

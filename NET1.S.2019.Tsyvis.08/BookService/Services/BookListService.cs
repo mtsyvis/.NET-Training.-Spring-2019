@@ -36,6 +36,7 @@ namespace BookService.Services
         /// </summary>
         public void Load()
         {
+            //this.Books = (List<Book>)this.bookListStorage.Load();
             this.Books = new List<Book>(this.bookListStorage.Load());
         }
 
@@ -78,6 +79,22 @@ namespace BookService.Services
         }
 
         /// <summary>
+        /// Remove book from storage.
+        /// </summary>
+        /// <param name="book">The book</param>
+        public void Remove(string isbn)
+        {
+            if (isbn is null)
+            {
+                throw new ArgumentNullException($"isbn is null{nameof(isbn)}");
+            }
+
+            var book = this.FindByTag(isbn);
+            this.Books.Remove(book);
+            this.Save();
+        }
+
+        /// <summary>
         /// Finds the by tag.
         /// </summary>
         /// <param name="predicate">The predicate.</param>
@@ -100,6 +117,69 @@ namespace BookService.Services
             }
 
             return foundBooks;
+        }
+
+        /// <summary>
+        /// Finds the by tag.
+        /// </summary>
+        /// <param name="isbn">The isbn.</param>
+        /// <returns>founded book</returns>
+        /// <exception cref="System.ArgumentNullException">isbn is null</exception>
+        public Book FindByTag(string isbn)
+        {
+            if (isbn is null)
+            {
+                throw new ArgumentNullException($"isbn is null {nameof(isbn)}");
+            }
+
+            foreach (var book in this.Books)
+            {
+                if (book.ISBN.Equals(isbn))
+                {
+                    return book;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Updates the book.
+        /// </summary>
+        /// <param name="book">The book.</param>
+        /// <param name="isbn">The isbn.</param>
+        /// <exception cref="ArgumentNullException">
+        /// isbn is null
+        /// or
+        /// book is null
+        /// </exception>
+        /// <exception cref="ArgumentException">this book already stored</exception>
+        public void UpdateBook(Book book, string isbn)
+        {
+            if (isbn is null)
+            {
+                throw new ArgumentNullException($"isbn is null{nameof(book)}");
+            }
+
+            if (book is null)
+            {
+                throw new ArgumentNullException($"book is null{nameof(book)}");
+            }
+
+            if (this.Books.Contains(book))
+            {
+                throw new ArgumentException($"this book already stored{nameof(book)}");
+            }
+
+            for (int i = 0; i < this.Books.Count; i++)
+            {
+                if (this.Books[i].ISBN.Equals(book.ISBN))
+                {
+                    this.Books[i] = book;
+                }
+            }
+
+            this.Save();
         }
 
         /// <summary>

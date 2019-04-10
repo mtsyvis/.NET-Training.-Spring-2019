@@ -5,11 +5,10 @@ using BookService.Storages;
 using BookService.Services;
 using System.Collections.Generic;
 using BookService.Book_comparers;
+using BookService.Book_predicates;
 
 namespace NET1.S._2019.Tsyvis._08.Tests
 {
-    using BookService.Book_predicates;
-
     [TestFixture]
     public class BookListServiceTests
     {

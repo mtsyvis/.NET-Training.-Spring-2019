@@ -37,7 +37,12 @@ namespace BookService.Entities
             this.Price = price;
         }
 
-                /// <summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Book"/> class.
+        /// </summary>
+        public Book() { }
+
+        /// <summary>
         /// Gets or sets the isbn.
         /// </summary>
         /// <value>
