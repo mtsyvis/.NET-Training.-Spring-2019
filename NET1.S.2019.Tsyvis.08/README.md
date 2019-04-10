@@ -7,7 +7,7 @@
    - [ArrayExtension Task2](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07/ArrayExtension.cs)
 
 3. - [Task3](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.08/BookService)
-   - [BookListService](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.08/BookService/BookListService.cs)
+   - [BookListService](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.08/BookService/Services/BookListService.cs)
    - [BookWebUI](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.08/BookWebUI)
 
 ## Tasks
