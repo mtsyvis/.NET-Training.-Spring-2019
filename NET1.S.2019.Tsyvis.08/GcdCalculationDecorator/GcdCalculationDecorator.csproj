@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="ExecutionTimeCountDecorator.cs" />
     <Compile Include="GcdAlgorithmDecorator.cs" />
-    <Compile Include="GCDCalculation.cs" />
+    <Compile Include="GCDCalculator.cs" />
+    <Compile Include="IStopwatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StopwatchAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NET1.S.2019.Tsyvis.08\NET1.S.2019.Tsyvis.08.csproj">

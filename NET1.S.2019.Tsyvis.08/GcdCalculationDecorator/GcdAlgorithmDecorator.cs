@@ -4,7 +4,7 @@ using NET1.S._2019.Tsyvis._08;
 namespace GcdCalculationDecorator
 {
     /// <summary>
-    /// Implement IGcdAlgorithm.
+    /// Implement <see cref="IGcdAlgorithm"/>.
     /// </summary>
     /// <seealso cref="NET1.S._2019.Tsyvis._08.IGcdAlgorithm" />
     public abstract class GcdAlgorithmDecorator : IGcdAlgorithm

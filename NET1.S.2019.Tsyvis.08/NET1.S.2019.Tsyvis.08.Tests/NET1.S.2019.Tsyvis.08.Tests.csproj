@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookListServiceTests.cs" />
-    <Compile Include="GCDCalculationTests.cs" />
+    <Compile Include="GCDCalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +69,10 @@
     <ProjectReference Include="..\GcdCalculationDecorator\GcdCalculationDecorator.csproj">
       <Project>{b2c88bc6-1bf0-4c89-b40d-51105e220464}</Project>
       <Name>GcdCalculationDecorator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NET1.S.2019.Tsyvis.08\NET1.S.2019.Tsyvis.08.csproj">
+      <Project>{dce3fd11-5ac7-48ce-932b-a67d10115425}</Project>
+      <Name>NET1.S.2019.Tsyvis.08</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

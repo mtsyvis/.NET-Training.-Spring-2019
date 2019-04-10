@@ -1,4 +1,5 @@
 ﻿using NET1.S._2019.Tsyvis._08;
+using System;
 
 namespace GcdCalculationDecorator
 {
@@ -9,12 +10,19 @@ namespace GcdCalculationDecorator
     public class ExecutionTimeCountDecorator : GcdAlgorithmDecorator
     {
         /// <summary>
+        /// The stop watcher
+        /// </summary>
+        private IStopwatcher stopwatcher;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ExecutionTimeCountDecorator"/> class.
         /// </summary>
         /// <param name="algorithm">The algorithm.</param>
-        public ExecutionTimeCountDecorator(IGcdAlgorithm algorithm)
+        public ExecutionTimeCountDecorator(IGcdAlgorithm algorithm, IStopwatcher stopwatcher)
             : base(algorithm)
         {
+            this.stopwatcher =
+                stopwatcher ?? throw new ArgumentNullException($"stopwatcher is null{nameof(stopwatcher)}");
         }
 
         /// <summary>
@@ -33,10 +41,10 @@ namespace GcdCalculationDecorator
         /// <returns>founded GCD</returns>
         public override int Calculate(int first, int second)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            this.stopwatcher.Start();
             int gcd = this.algorithm.Calculate(first, second);
-            watch.Stop();
-            this.ExecutionTime = watch.ElapsedMilliseconds;
+            this.stopwatcher.Stop();
+            this.ExecutionTime = this.stopwatcher.TimeInMilliseconds;
             return gcd;
         }
     }
