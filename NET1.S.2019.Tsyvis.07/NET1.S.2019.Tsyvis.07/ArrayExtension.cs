@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using NET1.S._2019.Tsyvis._07.Transform;
 using NET1.S._2019.Tsyvis._07.Filter;
-using NET1.S._2019.Tsyvis._07.Sort;
 
 namespace NET1.S._2019.Tsyvis._07
 {
-    using NET1.S._2019.Tsyvis._07.Sort_jagged_array;
+    using System.Diagnostics;
 
     /// <summary>
     /// Provide manipulation with array.
@@ -16,20 +15,21 @@ namespace NET1.S._2019.Tsyvis._07
         #region API
 
         /// <summary>
-        /// Filters the array by selected <paramref name="predicate"/>.
+        /// Filters the specified predicate.
         /// </summary>
-        /// <param name="array">The array to filter.</param>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
+        /// <param name="array">The array.</param>
         /// <param name="predicate">The predicate.</param>
-        /// <returns>filtered array</returns>
+        /// <returns>Sorted array</returns>
         /// <exception cref="ArgumentNullException">predicate is null</exception>
-        public static int[] Filter(this int[] array, IPredicateNumber predicate)
+        public static TSource[] Filter<TSource>(this TSource[] array, IPredicateNumber<TSource> predicate)
         {
             if (predicate == null)
             {
                 throw new ArgumentNullException($"predicate is null{nameof(predicate)}");
             }
 
-            var filteredNumbers = new List<int>();
+            var filteredNumbers = new List<TSource>();
 
             foreach (var i in array)
             {
@@ -49,14 +49,14 @@ namespace NET1.S._2019.Tsyvis._07
         /// <param name="rule">The rule.</param>
         /// <returns>transformed array of strings</returns>
         /// <exception cref="ArgumentNullException">predicate is null</exception>
-        public static string[] Transform(this double[] array, ITransformDoubleRule rule)
+        public static TResult[] Transform<TResult, TSource>(this TSource[] array, ITransform<TResult, TSource> rule)
         {
             if (rule == null)
             {
                 throw new ArgumentNullException($"predicate is null{nameof(rule)}");
             }
 
-            var transformedNumbers = new List<string>();
+            var transformedNumbers = new List<TResult>();
 
             foreach (var i in array)
             {
@@ -72,14 +72,18 @@ namespace NET1.S._2019.Tsyvis._07
         /// <param name="array">The array.</param>
         /// <param name="comparer">The comparer</param>
         /// <exception cref="ArgumentNullException">comparer is null</exception>
-        public static void Sort(this string[] array, IComparer<string> comparer)
+        public static TSource[] Sort<TSource>(this TSource[] array, IComparer<TSource> comparer)
         {
             if (comparer == null)
             {
                 throw new ArgumentNullException($"comparer is null{nameof(comparer)}");
             }
 
-            QuickSort(array, comparer);
+            var copyArray = new TSource[array.Length];
+            Array.Copy(array, copyArray, array.Length);
+            QuickSort(copyArray, comparer);
+
+            return copyArray;
         }
 
         /// <summary>
@@ -121,7 +125,7 @@ namespace NET1.S._2019.Tsyvis._07
             return copyArray;
         }
 
-        private static void QuickSort(string[] array, IComparer<string> comparer)
+        private static void QuickSort<TSource>(TSource[] array, IComparer<TSource> comparer)
         {
             if (array.Length == 0)
             {
@@ -131,7 +135,7 @@ namespace NET1.S._2019.Tsyvis._07
             QuickSortImplementation(array, 0, array.Length - 1, comparer);
         }
 
-        private static void QuickSortImplementation(string[] array, int start, int end, IComparer<string> comparer)
+        private static void QuickSortImplementation<TSource>(TSource[] array, int start, int end, IComparer<TSource> comparer)
         {
             if (start >= end)
             {
@@ -143,9 +147,9 @@ namespace NET1.S._2019.Tsyvis._07
             QuickSortImplementation(array, pivot + 1, end, comparer);
         }
 
-        private static int Partition(string[] array, int start, int end, IComparer<string> comparer)
+        private static int Partition<TSource>(TSource[] array, int start, int end, IComparer<TSource> comparer)
         {
-            string temp;
+            TSource temp;
             int marker = start;
 
             for (int i = start; i <= end; i++)

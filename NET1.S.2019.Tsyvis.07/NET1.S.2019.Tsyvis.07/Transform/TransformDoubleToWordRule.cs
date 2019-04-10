@@ -7,20 +7,20 @@ namespace NET1.S._2019.Tsyvis._07.Transform
     /// <summary>
     /// Provide transforming number to word representation.
     /// </summary>
-    /// <seealso cref="NET1.S._2019.Tsyvis._07.Transform.ITransformDoubleRule" />
-    public class TransformDoubleToWordRule : ITransformDoubleRule
+    /// <seealso cref="NET1.S._2019.Tsyvis._07.Transform.ITransform" />
+    public class TransformDoubleToWordRule<TSource> : ITransform<string, TSource>
     {
         /// <summary>
         /// The creator of dictionary.
         /// </summary>
-        private readonly IDictionariesCreator creator;
+        private readonly IDictionariesCreator<TSource> creator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransformDoubleToWordRule"/> class.
         /// </summary>
         /// <param name="creator">The creator.</param>
         /// <exception cref="ArgumentNullException">creator is null</exception>
-        public TransformDoubleToWordRule(IDictionariesCreator creator)
+        public TransformDoubleToWordRule(IDictionariesCreator<TSource> creator)
         {
             this.creator = creator ?? throw new ArgumentNullException($"creator is null{nameof(creator)}");
         }
@@ -32,9 +32,9 @@ namespace NET1.S._2019.Tsyvis._07.Transform
         /// <returns>
         /// string representation of number
         /// </returns>
-        public string Transform(double number)
+        public string Transform(TSource number)
         {
-            Dictionary<double, string> specialCases = this.creator.GetSpecialDoubles();
+            Dictionary<TSource, string> specialCases = this.creator.GetSpecialDoubles();
 
             if (specialCases.TryGetValue(number, out string result))
             {
@@ -52,7 +52,7 @@ namespace NET1.S._2019.Tsyvis._07.Transform
         /// <param name="number">The number.</param>
         /// <param name="dictionary">The dictionary.</param>
         /// <returns>word representation</returns>
-        private static string GetWordRepresentation(double number, Dictionary<char, string> dictionary)
+        private static string GetWordRepresentation(TSource number, Dictionary<char, string> dictionary)
         {
             char[] symbols = number.ToString().ToCharArray();
             var wordBuilder = new StringBuilder();

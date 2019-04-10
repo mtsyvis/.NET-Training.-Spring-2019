@@ -5,7 +5,7 @@ namespace NET1.S._2019.Tsyvis._07.Transform
     /// <summary>
     /// Defines an interface for creating dictionaries.
     /// </summary>
-    public interface IDictionariesCreator
+    public interface IDictionariesCreator<TSource>
     {
         /// <summary>
         /// Gets the words.
@@ -17,6 +17,6 @@ namespace NET1.S._2019.Tsyvis._07.Transform
         /// Gets the special doubles.
         /// </summary>
         /// <returns>dictionary with special doubles</returns>
-        Dictionary<double, string> GetSpecialDoubles();
+        Dictionary<TSource, string> GetSpecialDoubles();
     }
 }

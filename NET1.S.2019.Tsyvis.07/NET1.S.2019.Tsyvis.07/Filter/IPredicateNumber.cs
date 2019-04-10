@@ -3,13 +3,13 @@
     /// <summary>
     /// Checked condition of number.
     /// </summary>
-    public interface IPredicateNumber
+    public interface IPredicateNumber<T>
     {
         /// <summary>
         /// Conditions the specified <paramref name="number"/>.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>true if the condition is met; otherwise false</returns>
-        bool Condition(int number);
+        bool Condition(T number);
     }
 }

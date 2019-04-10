@@ -5,8 +5,8 @@ namespace NET1.S._2019.Tsyvis._07.Transform
     /// <summary>
     /// Provide transforming real number to binary representation.
     /// </summary>
-    /// <seealso cref="NET1.S._2019.Tsyvis._07.Transform.ITransformDoubleRule" />
-    public class TransformDoubleToBinaryRepresentationRule : ITransformDoubleRule
+    /// <seealso cref="NET1.S._2019.Tsyvis._07.Transform.ITransform" />
+    public class TransformDoubleToBinaryRepresentationRule : ITransform<string, double>
     {
         /// <summary>
         /// Transforms the specified number.

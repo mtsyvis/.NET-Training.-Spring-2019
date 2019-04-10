@@ -6,7 +6,7 @@ namespace NET1.S._2019.Tsyvis._07.Transform
     /// Provide creating Russian dictionary.
     /// </summary>
     /// <seealso cref="NET1.S._2019.Tsyvis._07.Transform.IDictionariesCreator" />
-    public class RussianDictionaryCreator : IDictionariesCreator
+    public class RussianDictionaryCreator : IDictionariesCreator<double>
     {
         /// <summary>
         /// Gets the words.

@@ -3,13 +3,13 @@
     /// <summary>
     /// Defines an interface for transforming doule.
     /// </summary>
-    public interface ITransformDoubleRule
+    public interface ITransform<TResult, TSource>
     {
         /// <summary>
         /// Transforms the specified number.
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>string representation</returns>
-        string Transform(double number);
+        TResult Transform(TSource source);
     }
 }

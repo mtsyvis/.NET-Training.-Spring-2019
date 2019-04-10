@@ -6,7 +6,7 @@ namespace NET1.S._2019.Tsyvis._07.Transform
     /// Provide creating English dictionary.
     /// </summary>
     /// <seealso cref="NET1.S._2019.Tsyvis._07.Transform.IDictionariesCreator" />
-    public class EnglishDictionaryCreator : IDictionariesCreator
+    public class EnglishDictionaryCreator : IDictionariesCreator<double>
     {
         /// <summary>
         /// Gets the words.

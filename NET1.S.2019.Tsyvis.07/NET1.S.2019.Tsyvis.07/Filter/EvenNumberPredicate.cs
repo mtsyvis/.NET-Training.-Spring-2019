@@ -4,7 +4,7 @@
     /// Implement <see cref="IPredicateNumber"/>.
     /// </summary>
     /// <seealso cref="NET1.S._2019.Tsyvis._07.IPredicateNumber" />
-    public class EvenNumberPredicate : IPredicateNumber
+    public class EvenNumberPredicate : IPredicateNumber<int>
     {
         /// <summary>
         /// Determines whether the <paramref name="number"/> is even.

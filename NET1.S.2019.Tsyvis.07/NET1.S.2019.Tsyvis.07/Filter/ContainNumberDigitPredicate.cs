@@ -3,24 +3,25 @@
 namespace NET1.S._2019.Tsyvis._07.Filter
 {
     /// <summary>
-    /// Implement <see cref="IPredicateNumber"/>.
+    /// Implement <see cref="IPredicateNumber`1"/>
     /// </summary>
-    /// <seealso cref="NET1.S._2019.Tsyvis._07.IPredicateNumber" />
-    public class ContainNumberDigitPredicate : IPredicateNumber
+    /// <typeparam name="T"></typeparam>
+    /// <seealso cref="NET1.S._2019.Tsyvis._07.Filter.IPredicateNumber{T}" />
+    public class ContainNumberDigitPredicate<T> : IPredicateNumber<T> 
     {
         /// <summary>
         /// The digit to check condition.
         /// </summary>
-        private readonly int digit;
+        private readonly char digit;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContainNumberDigitPredicate"/> class.
+        /// Initializes a new instance of the <see cref="ContainNumberDigitPredicate{T}"/> class.
         /// </summary>
         /// <param name="digit">The digit.</param>
         /// <exception cref="ArgumentOutOfRangeException">digit is less then 0 or more then 9</exception>
-        public ContainNumberDigitPredicate(int digit)
+        public ContainNumberDigitPredicate(char digit)
         {
-            if (digit > 9 || digit < 0)
+            if (digit > '9' || digit < '0')
             {
                 throw new ArgumentOutOfRangeException($"digit is less then 0 or more then 9 {nameof(digit)}");
             }
@@ -33,18 +34,16 @@ namespace NET1.S._2019.Tsyvis._07.Filter
         /// </summary>
         /// <param name="number">The number.</param>
         /// <returns>true if the condition is met; otherwise false</returns>
-        public bool Condition(int number)
+        public bool Condition(T number)
         {
-            number = Math.Abs(number);
+            var strNumber = number.ToString().ToCharArray();
 
-            while (number > 0)
+            for (int i = 0; i < strNumber.Length; i++)
             {
-                if (number % 10 == this.digit)
+                if (strNumber[i] == this.digit)
                 {
                     return true;
                 }
-
-                number /= 10;
             }
 
             return false;

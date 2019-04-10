@@ -59,10 +59,11 @@
     <Compile Include="Sort\LengthDescendingComparer.cs" />
     <Compile Include="Transform\EnglishDictionaryCreator.cs" />
     <Compile Include="Transform\IDictionariesCreator.cs" />
-    <Compile Include="Transform\ITransformDoubleRule.cs" />
+    <Compile Include="Transform\ITransform.cs" />
     <Compile Include="Transform\RussianDictionaryCreator.cs" />
     <Compile Include="Transform\TransformDoubleToBinaryRepresentationRule.cs" />
     <Compile Include="Transform\TransformDoubleToWordRule.cs" />
+    <Compile Include="Transform\TransformStringToNumber.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
