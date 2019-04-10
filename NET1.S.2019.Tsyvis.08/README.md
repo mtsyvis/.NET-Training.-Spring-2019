@@ -1,6 +1,6 @@
 ## Links
-1. - [Task1 #1.dll](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.08/NET1.S.2019.Tsyvis.08) Refactored GCD version 3
-   - [Task1 #2.dll](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.08/GcdCalculationDecorator)
+1. - [Task1 #1.dll](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.08/NET1.S.2019.Tsyvis.08) 
+   - [Task1 #2.dll Refactored GCD version 3](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.08/GcdCalculationDecorator)
    - [GCDCalculatorTests](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.08/NET1.S.2019.Tsyvis.08.Tests/GCDCalculatorTests.cs)
 
 2. - [Task2](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07/Sort%20jagged%20array)
