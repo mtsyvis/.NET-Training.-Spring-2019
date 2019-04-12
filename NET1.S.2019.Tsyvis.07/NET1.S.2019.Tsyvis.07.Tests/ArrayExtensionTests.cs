@@ -3,9 +3,12 @@ using NET1.S._2019.Tsyvis._07.Filter;
 using NET1.S._2019.Tsyvis._07.Sort;
 using NET1.S._2019.Tsyvis._07.Transform;
 using NET1.S._2019.Tsyvis._07.Sort_jagged_array;
+using NET1.S._2019.Tsyvis._07.Transform.TransformRules;
 
 namespace NET1.S._2019.Tsyvis._07.Tests
 {
+    using System;
+
     [TestFixture]
     public class ArrayExtensionTests
     {
@@ -248,6 +251,49 @@ namespace NET1.S._2019.Tsyvis._07.Tests
             expectedMatrix[3] = new int[] { 1000, 600, -100 };
 
             CollectionAssert.AreEqual(expectedMatrix, actualMatrix.SortJaggedArray(new JaggedArraySumValuesAscendingComparer()));
+        }
+
+        #endregion
+
+        #region Transform string to number in the desired number system
+
+        [Test]
+        public void Transform_ByTransformStringToNumberRule2NumberSystem_WellTransformed()
+        {
+            var actualArray = new string[] { "101", "10" };
+            var expectedArray = new int[] { 5, 2 };
+
+            var rule = new TransformStringToNumberRule(2);
+
+            Assert.AreEqual(expectedArray, actualArray.Transform(rule));
+        }
+
+        [Test]
+        public void Transform_ByTransformStringToNumberRule16NumberSystem_WellTransformed()
+        {
+            var actualArray = new string[] { "FFA2", "A" };
+            var expectedArray = new int[] { 65442, 10 };
+
+            var rule = new TransformStringToNumberRule(16);
+
+            Assert.AreEqual(expectedArray, actualArray.Transform(rule));
+        }
+
+        [Test]
+        public void Transform_ByTransformStringToNumberRuleStringHaveWrongSymbols_ThrowArgumentException()
+        {
+            var actualArray = new string[] { "FF!143#A2", "A" };
+
+            Assert.Throws<ArgumentException>(() => actualArray.Transform(new TransformStringToNumberRule(3)));
+        }
+
+        [Test]
+        public void Transform_ByTransformStringToNumberRuleStringIsNotStringSuitableForNumberSystem_ThrowArgumentException()
+        {
+            var actualArray = new string[] { "514",};
+            var numberSystemBase = 3;
+
+            Assert.Throws<ArgumentException>(() => actualArray.Transform(new TransformStringToNumberRule(numberSystemBase)));
         }
 
         #endregion

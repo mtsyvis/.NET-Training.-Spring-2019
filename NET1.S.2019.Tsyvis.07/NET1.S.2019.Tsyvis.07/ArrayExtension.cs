@@ -5,8 +5,6 @@ using NET1.S._2019.Tsyvis._07.Filter;
 
 namespace NET1.S._2019.Tsyvis._07
 {
-    using System.Diagnostics;
-
     /// <summary>
     /// Provide manipulation with array.
     /// </summary>

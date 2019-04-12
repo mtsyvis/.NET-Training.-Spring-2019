@@ -57,13 +57,14 @@
     <Compile Include="Sort\NumberOfEntriesDescendingComparer.cs" />
     <Compile Include="Sort\LengthAscendingComparer.cs" />
     <Compile Include="Sort\LengthDescendingComparer.cs" />
-    <Compile Include="Transform\EnglishDictionaryCreator.cs" />
-    <Compile Include="Transform\IDictionariesCreator.cs" />
-    <Compile Include="Transform\ITransform.cs" />
-    <Compile Include="Transform\RussianDictionaryCreator.cs" />
-    <Compile Include="Transform\TransformDoubleToBinaryRepresentationRule.cs" />
-    <Compile Include="Transform\TransformDoubleToWordRule.cs" />
-    <Compile Include="Transform\TransformStringToNumber.cs" />
+    <Compile Include="Transform\DictionaryCreators\EnglishDictionaryCreator.cs" />
+    <Compile Include="Transform\Interfaces\IDictionariesCreator.cs" />
+    <Compile Include="Transform\Interfaces\ITransform.cs" />
+    <Compile Include="Transform\DictionaryCreators\RussianDictionaryCreator.cs" />
+    <Compile Include="Transform\NumeralSystem.cs" />
+    <Compile Include="Transform\TransformRules\TransformDoubleToBinaryRepresentationRule.cs" />
+    <Compile Include="Transform\TransformRules\TransformDoubleToWordRule.cs" />
+    <Compile Include="Transform\TransformRules\TransformStringToNumberRule.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
