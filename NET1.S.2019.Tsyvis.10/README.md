@@ -1,5 +1,6 @@
 ## Links
 1. - [Generic refactoring](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07)
+
 2. - [Transform string to number in the desired number system](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07/Transform/TransformRules/TransformStringToNumberRule.cs)
   - [NumeralSystem class](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07/Transform/NumeralSystem.cs)
   - [Tests](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.07/NET1.S.2019.Tsyvis.07.Tests/ArrayExtensionTests.cs)
