@@ -9,9 +9,29 @@ namespace NET1.S._2019.Tsyvis._04
     public sealed class Polynomial : IEquatable<Polynomial>, ICloneable
     {
         /// <summary>
+        /// The epsilon
+        /// </summary>
+        private static readonly double Epsilon;
+
+        /// <summary>
         /// The coefficients of polynomial.
         /// </summary>
         private readonly double[] coefficients;
+
+        /// <summary>
+        /// Initializes the <see cref="Polynomial"/> class.
+        /// </summary>
+        static Polynomial()
+        {
+            try
+            {
+                Epsilon = double.Parse(System.Configuration.ConfigurationManager.AppSettings["epsilon"]);
+            }
+            catch
+            {
+                Epsilon = double.Epsilon;
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the Polynomial.
@@ -153,8 +173,8 @@ namespace NET1.S._2019.Tsyvis._04
         /// <summary>
         /// Determines whether two polynomials have different coefficients.
         /// </summary>
-        /// <param name="a">The first polynomial to compare.</param>
-        /// <param name="b">The second polynomial to compare.</param>
+        /// <param name="left">The first polynomial to compare.</param>
+        /// <param name="right">The second polynomial to compare.</param>
         /// <returns>true if the coefficients of a is different from the coefficients of b; otherwise, false.</returns>
         public static bool operator !=(Polynomial left, Polynomial right)
         {
@@ -167,6 +187,13 @@ namespace NET1.S._2019.Tsyvis._04
             return !left.Equals(right);
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -187,7 +214,7 @@ namespace NET1.S._2019.Tsyvis._04
 
             for (int i = 0; i < this.coefficients.Length; i++)
             {
-                if (this.coefficients[i] != polynomial.coefficients[i])
+                if (this.coefficients[i] - polynomial.coefficients[i] > Epsilon)
                 {
                     return false;
                 }
@@ -196,6 +223,13 @@ namespace NET1.S._2019.Tsyvis._04
             return true;
         }
 
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="other">An object to compare with this object.</param>
+        /// <returns>
+        ///   <see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.
+        /// </returns>
         public bool Equals(Polynomial other)
         {
             if (ReferenceEquals(null, other))
@@ -210,7 +244,7 @@ namespace NET1.S._2019.Tsyvis._04
 
             for (int i = 0; i < this.coefficients.Length; i++)
             {
-                if (this.coefficients[i] != other.coefficients[i])
+                if (this.coefficients[i] - other.coefficients[i] > Epsilon)
                 {
                     return false;
                 }
@@ -219,11 +253,37 @@ namespace NET1.S._2019.Tsyvis._04
             return true;
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
         public override int GetHashCode()
         {
-            return this.coefficients.GetHashCode();
+            var tempEpsilon = Epsilon;
+            int numberRounded = 0;
+            while (tempEpsilon < 1) 
+            {
+                numberRounded++;
+                tempEpsilon *= 10;
+            }
+
+            int hash = 0;
+            foreach (var coefficient in this.coefficients)
+            {
+                hash += 303 * Math.Round(coefficient, numberRounded).GetHashCode();
+            }
+
+            return hash;
         }
 
+        /// <summary>
+        /// Creates a new object that is a copy of the current instance.
+        /// </summary>
+        /// <returns>
+        /// A new object that is a copy of this instance.
+        /// </returns>
         public object Clone()
         {
             var copyCoefficients = new double[this.coefficients.Length];
@@ -231,6 +291,12 @@ namespace NET1.S._2019.Tsyvis._04
             return new Polynomial(copyCoefficients);
         }
 
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             if (this.coefficients.Length == 0)
