@@ -1,6 +1,7 @@
 ## Links
 1. [Fibonacci number generator](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.11/NET1.S.2019.Tsyvis.11/FibonacciNumberGenerator.cs)
 2. [Binary Search](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.11/NET1.S.2019.Tsyvis.11/ArrayExtensions.cs)
+3. [Queue<T>](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.11/NET1.S.2019.Tsyvis.11/Queue.cs)
 
 ## Задачи
 
