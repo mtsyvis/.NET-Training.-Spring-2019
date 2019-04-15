@@ -64,5 +64,19 @@ namespace NET1.S._2019.Tsyvis._11.Tests
             var queue = new Queue<bool>();
             Assert.Throws<InvalidOperationException>(() => queue.Peek());
         }
+
+        [Test]
+        public void GetEnumerator_ChangeQueueInForeach_ThrowInvalidOperationException()
+        {
+            var queue = new Queue<int>(new int[] { 1, 2, 4, 5, 6 });
+
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                foreach (var item in queue)
+                {
+                    queue.Enqueue(4);
+                }
+            });
+        }
     }
 }

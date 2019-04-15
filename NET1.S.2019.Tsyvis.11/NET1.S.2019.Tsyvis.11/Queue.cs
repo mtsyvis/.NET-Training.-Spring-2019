@@ -8,7 +8,7 @@ namespace NET1.S._2019.Tsyvis._11
     /// Represents a first-in, first-out collection of objects.
     /// </summary>
     /// <typeparam name="T">Specifies the type of elements in the queue.</typeparam>
-    public class Queue<T>
+    public class Queue<T> : IEnumerable<T>, IEnumerable
     {
         private T[] array;
 
@@ -17,6 +17,8 @@ namespace NET1.S._2019.Tsyvis._11
         private int tail;
 
         private int size;
+
+        private int version;
 
         private const int DefaultCapacity = 4;
 
@@ -90,8 +92,9 @@ namespace NET1.S._2019.Tsyvis._11
             }
 
             this.array[this.tail] = item;
-            this.tail++;
+            this.tail = (this.tail + 1) % this.array.Length;
             this.size++;
+            this.version++;
         }
 
         /// <summary>
@@ -108,8 +111,9 @@ namespace NET1.S._2019.Tsyvis._11
 
             T obj = this.array[this.head];
             this.array[this.head] = default(T);
-            this.head++;
+            this.head = (this.head + 1) % this.array.Length;
             this.size--;
+            this.version++;
             return obj;
         }
 
@@ -133,10 +137,20 @@ namespace NET1.S._2019.Tsyvis._11
         /// </summary>
         public void Clear()
         {
-            Array.Clear(this.array, this.head, this.size);
+            if (this.head < this.tail)
+            {
+                Array.Clear((Array)this.array, this.head, this.size);
+            }
+            else
+            {
+                Array.Clear((Array)this.array, this.head, this.array.Length - this.head);
+                Array.Clear((Array)this.array, 0, this.tail);
+            }
+
             this.head = 0;
             this.tail = 0;
             this.size = 0;
+            this.version++;
         }
 
         /// <summary>
@@ -212,7 +226,16 @@ namespace NET1.S._2019.Tsyvis._11
                 return objArray;
             }
 
-            Array.Copy(this.array, this.head, objArray, 0, this.size);
+            if (this.head < this.tail)
+            {
+                Array.Copy((Array)this.array, this.head, (Array)objArray, 0, this.size);
+            }
+            else
+            {
+                Array.Copy((Array)this.array, this.head, (Array)objArray, 0, this.array.Length - this.head);
+                Array.Copy((Array)this.array, 0, (Array)objArray, this.array.Length - this.head, this.tail);
+            }
+
             return objArray;
         }
 
@@ -227,11 +250,12 @@ namespace NET1.S._2019.Tsyvis._11
             }
         }
 
-        /// <summary>
-        /// Gets the enumerator.
-        /// </summary>
-        /// <returns>The enumerator</returns>
         public IEnumerator<T> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new Enumerator(this);
         }
@@ -247,12 +271,21 @@ namespace NET1.S._2019.Tsyvis._11
 
             if (this.size > 0)
             {
-                Array.Copy((Array)this.array, this.head, (Array)objArray, 0, this.size);
+                if (this.head < this.tail)
+                {
+                    Array.Copy((Array)this.array, this.head, (Array)objArray, 0, this.size);
+                }
+                else
+                {
+                    Array.Copy((Array)this.array, this.head, (Array)objArray, 0, this.array.Length - this.head);
+                    Array.Copy((Array)this.array, 0, (Array)objArray, this.array.Length - this.head, this.tail);
+                }
             }
 
             this.array = objArray;
             this.head = 0;
             this.tail = this.size;
+            this.version++;
         }
 
         private struct Enumerator : IEnumerator<T>
@@ -263,11 +296,14 @@ namespace NET1.S._2019.Tsyvis._11
 
             private T currentElement;
 
-            public Enumerator(Queue<T> queue)
+            private int version;
+
+            internal Enumerator(Queue<T> queue)
             {
                 this.queue = queue;
                 this.index = -1;
                 this.currentElement = default(T);
+                this.version = queue.version;
             }
 
             public T Current
@@ -300,6 +336,11 @@ namespace NET1.S._2019.Tsyvis._11
 
             public bool MoveNext()
             {
+                if (this.version != this.queue.version)
+                {
+                    throw new InvalidOperationException($"Enum failed version");
+                }
+
                 if (this.index == -2)
                 {
                     return false;
