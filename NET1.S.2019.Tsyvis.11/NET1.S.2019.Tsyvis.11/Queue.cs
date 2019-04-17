@@ -53,12 +53,25 @@ namespace NET1.S._2019.Tsyvis._11
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <exception cref="ArgumentNullException">collection is null</exception>
-        public Queue(IEnumerable<T> collection) : this(DefaultCapacity)
+        public Queue(IEnumerable<T> collection)
         {
             if (collection is null)
             {
                 throw new ArgumentNullException($"collection is null {nameof(collection)}");
             }
+
+            if (collection is ICollection<T> col)
+            {
+                this.array = new T[col.Count];
+            }
+            else
+            {
+                this.array = new T[DefaultCapacity];
+            }
+
+            this.size = 0;
+            this.head = 0;
+            this.tail = 0;
 
             foreach (T obj in collection)
             {
@@ -262,7 +275,7 @@ namespace NET1.S._2019.Tsyvis._11
 
         private T GetElement(int i)
         {
-            return this.array[(this.head + i)];
+            return this.array[(this.head + i) % this.array.Length];
         }
 
         private void SetCapacity(int capacity)

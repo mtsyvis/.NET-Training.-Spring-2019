@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NET1.S._2019.Tsyvis._11
 {
@@ -13,23 +14,30 @@ namespace NET1.S._2019.Tsyvis._11
         /// <param name="sequenceSize">Size of the sequence.</param>
         /// <returns>generated sequences</returns>
         /// <exception cref="System.ArgumentException">sequence size must be more then 2</exception>
-        public static int[] GenerateNumberSequences(int sequenceSize)
+        public static IEnumerable<ulong> GenerateNumberSequences(int sequenceSize)
         {
             if (sequenceSize < 2)
             {
                 throw new ArgumentException($"sequence size must be more then 2{nameof(sequenceSize)}");
             }
 
-            int[] array = new int[sequenceSize];
-            array[0] = 0;
-            array[1] = 1;
+            return GetSequence(sequenceSize);
+        }
 
-            for (int i = 2; i < array.Length; i++)
+        private static IEnumerable<ulong> GetSequence(int sequenceSize)
+        {
+            ulong fib1 = 0;
+            ulong fib2 = 1;
+            yield return fib1;
+            yield return fib2;
+
+            while (--sequenceSize != 1)
             {
-                array[i] = array[i - 1] + array[i - 2];
+                ulong fib3 = fib1 + fib2;
+                yield return fib3;
+                fib1 = fib2;
+                fib2 = fib3;
             }
-
-            return array;
         }
     }
 }
