@@ -44,6 +44,9 @@
     <Compile Include="BracketsVerifier.cs" />
     <Compile Include="PrimeNumberGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextSeparator.cs" />
+    <Compile Include="Word.cs" />
+    <Compile Include="WordEqualityComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
