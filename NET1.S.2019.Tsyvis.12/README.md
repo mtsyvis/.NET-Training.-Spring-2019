@@ -2,6 +2,7 @@
 
 1. [PrimeNumberGenerator](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.12/NET1.S.2019.Tsyvis.12/PrimeNumberGenerator.cs)
 2. [BracketsVerifier](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.12/NET1.S.2019.Tsyvis.12/BracketsVerifier.cs)
+
 3-4. [TextSeparator](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.12/NET1.S.2019.Tsyvis.12/TextSeparator.cs)
 
 ## Читать
