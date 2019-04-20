@@ -70,7 +70,7 @@ namespace NET1.S._2019.Tsyvis._12
 
         private static IEnumerable<string> GetWords(string text)
         {
-            return text.Split(new[] { ' ', ',', ':', '?', '!', '.' }, StringSplitOptions.RemoveEmptyEntries);
+            return text.Split(new[] { ' ', ',', ':', '?', '!', '.', '[', ']', '>', '<' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

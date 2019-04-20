@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 namespace NET1.S._2019.Tsyvis._12.Tests
 {
-    using System.Linq;
-
     [TestFixture]
     public class TextSeparatorTests
     {
@@ -13,6 +11,7 @@ namespace NET1.S._2019.Tsyvis._12.Tests
             "Jon Skeet, jon snow, Game of thrones.Dead",
             ExpectedResult = new string[] { "Jon", "Skeet", "snow", "Game", "of", "thrones", "Dead" })]
         [TestCase("bla,bla,Bla. Bla1", ExpectedResult = new string[] { "bla", "Bla1" })]
+        [TestCase("[One],  [one ]  oNe , bla,Bla. Bla1", ExpectedResult = new string[] { "One", "bla", "Bla1" })]
         public IEnumerable<string> GetDistinctWordTest(string text) => TextSeparator.GetDistinctWordCaseInsensitive(text);
 
         [Test]
