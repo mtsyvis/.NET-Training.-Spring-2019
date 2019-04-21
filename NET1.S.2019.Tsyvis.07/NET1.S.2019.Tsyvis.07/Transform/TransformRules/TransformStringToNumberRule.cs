@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace NET1.S._2019.Tsyvis._07.Transform.TransformRules
 {
@@ -32,7 +33,7 @@ namespace NET1.S._2019.Tsyvis._07.Transform.TransformRules
         /// <summary>
         /// Transforms the specified number.
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="source">the number</param>
         /// <returns>
         /// string representation
         /// </returns>
@@ -48,38 +49,26 @@ namespace NET1.S._2019.Tsyvis._07.Transform.TransformRules
                 throw new ArgumentException($"source have wrong symbols {nameof(source)}");
             }
 
-            this.CheckStringForNumberSystem(source);
-
             source = source.ToUpper();
             int result = 0;
-
-            for (int i = 0; i < source.Length; i++)
+            try
             {
-                result += (int)Math.Pow(this.numeralSystem.NumberSystemBase, source.Length - i - 1)
-                          * this.numeralSystem.NumberDictionary[source[i]];
+                int @base = 1;
+                int startCalculation = @base * this.numeralSystem.NumberDictionary[source[source.Length - 1]];
+                result = startCalculation;
+
+                for (int i = source.Length - 2; i >= 0; i--)
+                {
+                    @base *= this.numeralSystem.NumberSystemBase;
+                    result += @base * this.numeralSystem.NumberDictionary[source[i]];
+                }
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new ArgumentException($"Wrong string. String is not suitable for number system {nameof(source)} {nameof(this.numeralSystem.NumberSystemBase)}", ex);
             }
 
             return result;
-        }
-
-        private void CheckStringForNumberSystem(string source)
-        {
-            var iterator = this.numeralSystem.NumberDictionary.GetEnumerator();
-
-            for (int i = 0; i < this.numeralSystem.NumberDictionary.Count; i++)
-            {
-                iterator.MoveNext();
-            }
-
-            char biggerSymbol = iterator.Current.Key;
-
-            foreach (var symbol in source)
-            {
-                if (symbol > biggerSymbol)
-                {
-                    throw new ArgumentException($"Wrong string. String is not suitable for number system {nameof(source)} {nameof(this.numeralSystem.NumberSystemBase)}");
-                }
-            }
         }
     }
 }

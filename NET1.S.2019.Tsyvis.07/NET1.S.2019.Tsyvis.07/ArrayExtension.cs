@@ -19,35 +19,32 @@ namespace NET1.S._2019.Tsyvis._07
         /// <param name="array">The array.</param>
         /// <param name="predicate">The predicate.</param>
         /// <returns>Sorted array</returns>
-        /// <exception cref="ArgumentNullException">predicate is null</exception>
-        public static TSource[] Filter<TSource>(this TSource[] array, IPredicateNumber<TSource> predicate)
+        public static IEnumerable<TSource> Filter<TSource>(this IEnumerable<TSource> array, IPredicateNumber<TSource> predicate) where TSource : struct
         {
             if (predicate == null)
             {
-                throw new ArgumentNullException($"predicate is null{nameof(predicate)}");
+                yield break;
             }
-
-            var filteredNumbers = new List<TSource>();
 
             foreach (var i in array)
             {
                 if (predicate.Condition(i))
                 {
-                    filteredNumbers.Add(i);
+                    yield return i;
                 }
             }
-
-            return filteredNumbers.ToArray();
         }
 
         /// <summary>
-        /// Transforms the array by selected rule.
+        /// Transforms the specified rule.
         /// </summary>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
         /// <param name="array">The array.</param>
         /// <param name="rule">The rule.</param>
-        /// <returns>transformed array of strings</returns>
+        /// <returns>Transformed collection</returns>
         /// <exception cref="ArgumentNullException">predicate is null</exception>
-        public static TResult[] Transform<TResult, TSource>(this TSource[] array, ITransform<TResult, TSource> rule)
+        public static IEnumerable<TResult> Transform<TResult, TSource>(this IEnumerable<TSource> array, ITransform<TResult, TSource> rule)
         {
             if (rule == null)
             {
@@ -65,20 +62,21 @@ namespace NET1.S._2019.Tsyvis._07
         }
 
         /// <summary>
-        /// Sorts array by selected comparer.
+        /// Sorts the by.
         /// </summary>
+        /// <typeparam name="TSource">The type of the source.</typeparam>
         /// <param name="array">The array.</param>
-        /// <param name="comparer">The comparer</param>
+        /// <param name="comparer">The comparer.</param>
+        /// <returns>sorted array</returns>
         /// <exception cref="ArgumentNullException">comparer is null</exception>
-        public static TSource[] Sort<TSource>(this TSource[] array, IComparer<TSource> comparer)
+        public static IEnumerable<TSource> SortBy<TSource>(this IEnumerable<TSource> array, IComparer<TSource> comparer)
         {
             if (comparer == null)
             {
                 throw new ArgumentNullException($"comparer is null{nameof(comparer)}");
             }
 
-            var copyArray = new TSource[array.Length];
-            Array.Copy(array, copyArray, array.Length);
+            var copyArray = array.ToArray();
             QuickSort(copyArray, comparer);
 
             return copyArray;
@@ -111,6 +109,53 @@ namespace NET1.S._2019.Tsyvis._07
 
         #region Helper methods
 
+        private static TElement[] ToArray<TElement>(this IEnumerable<TElement> source)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException($"{nameof(source)}");
+            }
+
+            TElement[] array = null;
+
+            if (source is ICollection<TElement> elements)
+            {
+                array = new TElement[elements.Count];
+                elements.CopyTo(array, 0);
+                return array;
+            }
+            else
+            {
+                var tempArray = new TElement[source.Count()];
+                int i = 0;
+                foreach (var element in source)
+                {
+                    tempArray[i] = element;
+                    i++;
+                }
+
+                array = new TElement[source.Count()];
+                Array.Copy(tempArray, array, tempArray.Length);
+                return array;
+            }
+        }
+
+        private static int Count<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source is null)
+            {
+                throw new ArgumentNullException($"{nameof(source)}");
+            }
+
+            int count = 0;
+            while (source.GetEnumerator().MoveNext())
+            {
+                count++;
+            }
+
+            return count;
+        }
+        
         private static int[][] GetCopyJuggedArray(int[][] source)
         {
             var copyArray = new int[source.Length][];
