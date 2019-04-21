@@ -5,6 +5,8 @@
 
 3-4. [TextSeparator](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.12/NET1.S.2019.Tsyvis.12/TextSeparator.cs)
 
+5. [StrikingOutInCircleProcess](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.12/NET1.S.2019.Tsyvis.12/StrikingOutInCircleProcess.cs)
+
 ## Читать
 
 - C# 6.0 in a Nutshell. Joseph Albahari, Ben Albahari. O'Reilly Media. 2015.
