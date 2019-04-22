@@ -100,23 +100,7 @@ namespace NET1.S._2019.Tsyvis._13
         /// <returns>The preorder iterator</returns>
         public IEnumerable<T> GetPreorderEnumerator()
         {
-            var stack = new Stack<Node>();
-            stack.Push(this.root);
-
-            while (stack.Count > 0)
-            {
-                var node = stack.Pop();
-                yield return node.item;
-                if (node.right != null)
-                {
-                    stack.Push(node.right);
-                }
-
-                if (node.left != null)
-                {
-                    stack.Push(node.left);
-                }
-            }
+            return this.Preorder(this.root);
         }
 
         /// <summary>
@@ -125,10 +109,7 @@ namespace NET1.S._2019.Tsyvis._13
         /// <returns>The post order iterator</returns>
         public IEnumerable<T> GetPostorderEnumerator()
         {
-            foreach (var node in this.Postorder(this.root))
-            {
-                yield return node;
-            }
+            return this.Postorder(this.root);
         }
 
         /// <summary>
@@ -137,47 +118,67 @@ namespace NET1.S._2019.Tsyvis._13
         /// <returns>The inorder iterator</returns>
         public IEnumerable<T> GetInorderEnumerator()
         {
-            foreach (var node in this.Inorder(this.root))
-            {
-                yield return node;
-            }
+            return this.Inorder(this.root);
         }
 
         #region Helper methods and class
 
         private IEnumerable<T> Inorder(Node parent)
         {
-            if (parent != null)
+            if (parent == null)
             {
-                foreach (var item in this.Inorder(parent.left))
-                {
-                    yield return item;
-                }
+                yield break;
+            }
 
-                yield return parent.item;
-                foreach (var item in this.Inorder(parent.right))
-                {
-                    yield return item;
-                }
+            foreach (var item in this.Inorder(parent.left))
+            {
+                yield return item;
+            }
+
+            yield return parent.item;
+            foreach (var item in this.Inorder(parent.right))
+            {
+                yield return item;
+            }
+        }
+
+        private IEnumerable<T> Preorder(Node parent)
+        {
+            if (parent == null)
+            {
+                yield break;
+            }
+
+            yield return parent.item;
+            foreach (var item in this.Preorder(parent.left))
+            {
+                yield return item;
+            }
+
+            foreach (var item in this.Preorder(parent.right))
+            {
+                yield return item;
             }
         }
 
         private IEnumerable<T> Postorder(Node parent)
         {
-            if (parent != null)
+            if (parent == null)
             {
-                foreach (var item in this.Postorder(parent.left))
-                {
-                    yield return item;
-                }
-
-                foreach (var item in this.Postorder(parent.right))
-                {
-                    yield return item;
-                }
-
-                yield return parent.item;
+                yield break;
             }
+
+            foreach (var item in this.Postorder(parent.left))
+            {
+                yield return item;
+            }
+
+            foreach (var item in this.Postorder(parent.right))
+            {
+                yield return item;
+            }
+
+            yield return parent.item;
         }
 
         private Node FindNode(T item)

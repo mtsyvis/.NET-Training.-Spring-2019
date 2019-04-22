@@ -43,12 +43,12 @@ namespace NET1.S._2019.Tsyvis._07
         /// <param name="array">The array.</param>
         /// <param name="rule">The rule.</param>
         /// <returns>Transformed collection</returns>
-        /// <exception cref="ArgumentNullException">predicate is null</exception>
+        /// <exception cref="ArgumentNullException">rule is null</exception>
         public static IEnumerable<TResult> Transform<TResult, TSource>(this IEnumerable<TSource> array, ITransform<TResult, TSource> rule)
         {
             if (rule == null)
             {
-                throw new ArgumentNullException($"predicate is null{nameof(rule)}");
+                throw new ArgumentNullException($"rule is null{nameof(rule)}");
             }
 
             var transformedNumbers = new List<TResult>();
@@ -58,7 +58,7 @@ namespace NET1.S._2019.Tsyvis._07
                 transformedNumbers.Add(rule.Transform(i));
             }
 
-            return transformedNumbers.ToArray();
+            return TransformIterator(transformedNumbers);
         }
 
         /// <summary>
@@ -166,6 +166,14 @@ namespace NET1.S._2019.Tsyvis._07
             }
 
             return copyArray;
+        }
+
+        private static IEnumerable<TResult> TransformIterator<TResult>(IEnumerable<TResult> collection)
+        {
+            foreach (var item in collection)
+            {
+                yield return item;
+            }
         }
 
         private static void QuickSort<TSource>(TSource[] array, IComparer<TSource> comparer)
