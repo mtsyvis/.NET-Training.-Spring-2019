@@ -44,11 +44,6 @@ namespace NET1.S._2019.Tsyvis._07.Transform.TransformRules
         /// </exception>
         public int Transform(string source)
         {
-            if (!Regex.IsMatch(source, @"[a-zA-Z0-9]"))
-            {
-                throw new ArgumentException($"source have wrong symbols {nameof(source)}");
-            }
-
             source = source.ToUpper();
             int result = 0;
             try
