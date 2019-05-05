@@ -5,6 +5,8 @@
 2. - [BinarySearchTree](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.13/ClassLibrary1/BinarySearchTree.cs)
    - [Tests](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.13/NET1.S.2019.Tsyvis.13.Tests/BinarySearchTreeTests.cs)
 
+3. [Collection table](https://docs.google.com/spreadsheets/d/1h2ZD5aAjgU053PbNcvxaUc1CcafBrsfsRuoOBZzBOdI/edit?usp=sharing)
+
 ## Задачи
 
 1. (deadline - 20.04.2019, 24.00) Переобразовать методы класса ArrayExtension [Day 10](https://github.com/AnzhelikaKravchuk/.NET-Training.-Spring-2019/tree/master/Day%2010%20-%2009.04.2019) в обобщенно-типизированные методы расширений типизированного интерфейса `IEnumerable<T>`
