@@ -54,6 +54,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryRepresentationFormatProviderTests.cs" />
     <Compile Include="DoubleExtensionTests.cs" />
     <Compile Include="PolynomialTests.cs" />
     <Compile Include="TransformerTests.cs" />

@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryRepresentationFormatProvider.cs" />
     <Compile Include="DoubleExtension.cs" />
     <Compile Include="Polynomial.cs" />
     <Compile Include="Transformer.cs" />
