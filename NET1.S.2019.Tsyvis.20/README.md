@@ -1,6 +1,6 @@
 ## Links
 
-1. [StreamsExtension]https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.20/StreamsDemo/StreamsExtension.cs
+1. [StreamsExtension](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/NET1.S.2019.Tsyvis.20/StreamsDemo/StreamsExtension.cs)
 
 ## Задачи
 1.  **(deadline - 07.05.2019, 24.00)** Разработать класс, предоставляющий следующие функциональные возможности : 
