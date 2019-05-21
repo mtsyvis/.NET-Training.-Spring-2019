@@ -1,3 +1,8 @@
+## Links
+- [First task - StringConverter](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/29.04.2019/StringExtension/StringConverter.cs)
+
+- [Other tasks](https://github.com/mtsyvis/.NET-Training.-Spring-2019/tree/master/NET1.S.2019.Tsyvis.19)
+
 ## Читать
 - [C# 6.0 in a Nutshell. Joseph Albahari, Ben Albahari. O'Reilly Media. 2015.](http://shop.oreilly.com/product/0636920040323.do)
    - *Chapter 6.* Framework Fundamentals. [Code Listing](http://www.albahari.com/nutshell/ch06.aspx)
