@@ -8,6 +8,7 @@
 
 ## Постановка задания
 
+[Done](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/23.04.2019.2/PseudoEnumerable/Enumerable.cs)
 - Как альтернативу классу [EnumerableExtension](https://github.com/AnzhelikaKravchuk/23.04.2019.1/blob/master/PseudoEnumerable/EnumerableExtension.cs) создать класс Enumerable, в который добавить следующие методы расширения интерфеса `IEnumerable<T>`:
   - методы для фильтрации и трансформации последовательности, использующие в качестве параметров соответсвующие версии типа делегат [`Func<T>`](https://docs.microsoft.com/en-us/dotnet/api/system.func-2?view=netframework-4.8);
   - метод SortBy, использующий стратегию сортировки по ключу (сортировка по возрастанию) (*не стратегию сравнения двух элементов!*);
@@ -17,4 +18,6 @@
   - **метод SortByDescending, использующий стратегию сортировки по ключу (сортировка по убыванию);**
   - **метод SortByDescending, использующий стратегию сравнения двух ключей (сортировка по убыванию);**
   - **метод-генератор последовательности count целых чисел, начиная с некоторого целочисленного значения start.**
+
+[Done](https://github.com/mtsyvis/.NET-Training.-Spring-2019/blob/master/23.04.2019.2/PseudoEnumerable.Tests/EnumerableTests.cs)
 - Проверить работу разработанных методов, используя различные типы данных.
