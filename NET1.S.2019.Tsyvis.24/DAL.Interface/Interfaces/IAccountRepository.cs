@@ -5,14 +5,14 @@ namespace DAL.Interface.Interfaces
 {
     public interface IAccountRepository
     {
-        Account GetAccount(string iban);
+        DtoAccount GetAccount(string iban);
 
-        void AddAccount(Account account);
+        void AddAccount(DtoAccount account);
 
-        void UpdateAccount(Account account);
+        void UpdateAccount(DtoAccount account);
 
         void DeleteAccount(string iban);
 
-        IEnumerable<Account> GetAccounts();
+        IEnumerable<DtoAccount> GetAccounts();
     }
 }

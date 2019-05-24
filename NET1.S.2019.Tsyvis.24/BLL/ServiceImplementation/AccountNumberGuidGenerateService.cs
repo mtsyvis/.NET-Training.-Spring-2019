@@ -8,11 +8,11 @@ namespace BLL.ServiceImplementation
 {
     using BLL.Interface.Interfaces;
 
-    public class AccountNumberGenerateService : IAccountNumberGenerateService
+    public class AccountNumberGuidGenerateService : IAccountNumberGenerateService
     {
         public string Generate()
         {
-            return null;
+            return Guid.NewGuid().ToString();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DAL.Fake
 {
@@ -10,10 +6,11 @@ namespace DAL.Fake
 
     public class FakeListStorage
     {
-        public static List<Account> List = new List<Account>
+        public static List<DtoAccount> List = new List<DtoAccount>
                                                {
-                                                   new Account
-                                                       {
+                                                   new DtoAccount
+                                                       {   
+                                                           Iban = "1234",
                                                            AccountType = "base",
                                                            OwnerEmail = "jon.skit@gmail.com",
                                                            OwnerName = "Jon",

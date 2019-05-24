@@ -17,7 +17,7 @@ namespace DependencyResolver
             kernel.Bind<IAccountService>().To<AccountService>();
             //kernel.Bind<IRepository>().To<FakeRepository>();
             kernel.Bind<IAccountRepository>().To<FakeAccountRepository>().WithConstructorArgument("test.bin");
-            kernel.Bind<IAccountNumberGenerateService>().To<AccountNumberGenerateService>().InSingletonScope();
+            kernel.Bind<IAccountNumberGenerateService>().To<AccountNumberGuidGenerateService>().InSingletonScope();
             //kernel.Bind<IApplicationSettings>().To<ApplicationSettings>();
         }
     }

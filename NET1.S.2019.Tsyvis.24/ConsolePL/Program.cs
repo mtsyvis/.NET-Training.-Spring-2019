@@ -35,7 +35,7 @@ namespace ConsolePL
 
             foreach (var item in service.GetAllAccounts())
             {
-                Console.WriteLine(item);
+                Console.WriteLine($"{item.Iban}  {nameof(item.Sum)} = {item.Sum}  {nameof(item.OwnerName)} = {item.OwnerName}");
             }
 
             foreach (var t in creditNumbers)
@@ -45,7 +45,7 @@ namespace ConsolePL
 
             foreach (var item in service.GetAllAccounts())
             {
-                Console.WriteLine(item);
+                Console.WriteLine($"{item.Iban}  {nameof(item.Sum)} = {item.Sum}  {nameof(item.OwnerName)} = {item.OwnerName}");
             }
         }
     }

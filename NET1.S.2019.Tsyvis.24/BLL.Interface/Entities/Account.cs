@@ -2,34 +2,36 @@
 {
     public abstract class Account
     {
-        private double sum;
+        protected double sum;
 
-        public string Iban { get; }
+        public string Iban { get; set; }
 
-        public string OwnerName { get; protected set; }
+        public string OwnerName { get; set; }
 
-        public string OwnerSurname { get; protected set; }
+        public string OwnerSurname { get; set; }
 
-        public string OwnerEmail { get; protected set; }
+        public string OwnerEmail { get; set; }
 
         public double Sum
         {
             get => this.sum;
 
-            protected set
+            set
             {
                 this.RecountPoints(this.sum);
                 this.sum = value;
             }
         }
 
-        public double Points { get; protected set; }
+        public double Points { get;  set; }
 
-        public AccountType Type { get; protected set; }
+        public bool IsClosed { get;  set; }
 
-        public abstract int WithdrawCost { get; }
+        public abstract AccountType Type { get; }
 
-        public abstract int DepositCost { get; }
+        protected abstract int WithdrawCost { get; }
+
+        protected abstract int DepositCost { get; }
 
         protected abstract void RecountPoints(double oldSumValue);
     }

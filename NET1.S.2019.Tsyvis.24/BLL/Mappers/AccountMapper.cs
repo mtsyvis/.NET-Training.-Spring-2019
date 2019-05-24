@@ -4,16 +4,37 @@ using BLL.Interface.Entities;
 
 namespace BLL.Mappers
 {
-    public class AccountMapper : MapperBase<BLL.Interface.Entities.Account, DAL.Interface.DTO.Account>
+    public class AccountMapper : MapperBase<BLL.Interface.Entities.Account, DAL.Interface.DTO.DtoAccount>
     {
-        public override Account Map(DAL.Interface.DTO.Account element)
+        public override Account Map(DAL.Interface.DTO.DtoAccount element)
         {
-            throw new NotImplementedException();
+            AccountType type = (AccountType)Enum.Parse(typeof(AccountType), element.AccountType, true);
+            var account = AccountFactory.Create(type);
+
+            account.Iban = element.Iban;
+            account.Sum = element.Sum;
+            account.OwnerEmail = element.OwnerEmail;
+            account.OwnerName = element.OwnerName;
+            account.OwnerSurname = element.OwnerSurname;
+            account.IsClosed = false;
+            account.Points = element.Points;
+
+            return account;
         }
 
-        public override DAL.Interface.DTO.Account Map(Account element)
+        public override DAL.Interface.DTO.DtoAccount Map(Account element)
         {
-            throw new NotImplementedException();
+            return new DAL.Interface.DTO.DtoAccount
+                       {
+                           Iban = element.Iban,
+                           OwnerEmail = element.OwnerEmail,
+                           OwnerName = element.OwnerName,
+                           OwnerSurname = element.OwnerSurname,
+                           Points = element.Points,
+                           Sum = element.Sum,
+                           IsClosed = element.IsClosed,
+                           AccountType = element.Type.ToString()
+                       };
         }
     }
 }

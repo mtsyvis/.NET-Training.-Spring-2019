@@ -2,13 +2,13 @@
 
 namespace BLL.Accounts
 {
-    public class BaseAccount : Account
+    public class GoldAccount : Account
     {
-        public override AccountType Type => AccountType.Base;
+        public override AccountType Type => AccountType.Gold;
 
-        protected override int WithdrawCost => 2;
+        protected override int WithdrawCost => 3;
 
-        protected override int DepositCost => 5;
+        protected override int DepositCost => 10;
 
         protected override void RecountPoints(double oldSumValue)
         {

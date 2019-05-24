@@ -6,17 +6,17 @@ namespace DAL.Fake.Repositories
 {
     public class FakeAccountRepository : IAccountRepository
     {
-        public Account GetAccount(string iban)
+        public DtoAccount GetAccount(string iban)
         {
             return FakeListStorage.List.Find(ac => ac.Iban == iban);
         }
 
-        public void AddAccount(Account account)
+        public void AddAccount(DtoAccount account)
         {
             FakeListStorage.List.Add(account);
         }
 
-        public void UpdateAccount(Account account)
+        public void UpdateAccount(DtoAccount account)
         {
             var item = GetAccount(account.Iban);
             item.AccountType = account.AccountType;
@@ -32,7 +32,7 @@ namespace DAL.Fake.Repositories
             FakeListStorage.List.Remove(GetAccount(iban));
         }
 
-        public IEnumerable<Account> GetAccounts()
+        public IEnumerable<DtoAccount> GetAccounts()
         {
             return FakeListStorage.List;
         }

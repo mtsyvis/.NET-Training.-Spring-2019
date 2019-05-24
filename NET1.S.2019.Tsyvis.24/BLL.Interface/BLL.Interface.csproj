@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\AccountType.cs" />
+    <Compile Include="Exceptions\NotSupportedOperationException.cs" />
     <Compile Include="Exceptions\NotEnoughMoneyInAccountException.cs" />
+    <Compile Include="Exceptions\UnsupportedAccountTypeException.cs" />
     <Compile Include="Interfaces\IAccountNumberGenerateService.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

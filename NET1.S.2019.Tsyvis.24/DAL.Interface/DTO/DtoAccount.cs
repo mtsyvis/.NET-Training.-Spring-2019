@@ -1,8 +1,8 @@
 ﻿namespace DAL.Interface.DTO
 {
-    public class Account
+    public class DtoAccount
     {
-        public string Iban { get; }
+        public string Iban { get; set; }
 
         public string OwnerName { get; set; }
 
@@ -15,5 +15,7 @@
         public double Points { get; set; }
 
         public string AccountType { get; set; }
+
+        public bool IsClosed { get; set; }
     }
 }

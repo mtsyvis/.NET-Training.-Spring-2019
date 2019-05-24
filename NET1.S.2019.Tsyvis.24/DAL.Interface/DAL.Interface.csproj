@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\Account.cs" />
+    <Compile Include="DTO\DtoAccount.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
