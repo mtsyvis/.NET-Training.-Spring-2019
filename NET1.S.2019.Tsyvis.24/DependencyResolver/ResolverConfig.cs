@@ -8,6 +8,7 @@ using Ninject;
 
 namespace DependencyResolver
 {
+    using DAL.ADO.NET.Repositories;
     using DAL.Fake.Repositories;
 
     public static class ResolverConfig
@@ -15,8 +16,8 @@ namespace DependencyResolver
         public static void ConfigurateResolver(this IKernel kernel)
         {
             kernel.Bind<IAccountService>().To<AccountService>();
-            //kernel.Bind<IRepository>().To<FakeRepository>();
-            kernel.Bind<IAccountRepository>().To<FakeAccountRepository>().WithConstructorArgument("test.bin");
+            kernel.Bind<IAccountRepository>().To<AdoNetAccountRepository>();//.WithConstructorArgument("test.bin");
+            kernel.Bind<ILogger>().To<NLogLogger>();//.InSingletonScope();
             kernel.Bind<IAccountNumberGenerateService>().To<AccountNumberGuidGenerateService>().InSingletonScope();
             //kernel.Bind<IApplicationSettings>().To<ApplicationSettings>();
         }

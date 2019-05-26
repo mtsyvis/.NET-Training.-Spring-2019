@@ -2,24 +2,20 @@
 {
     public abstract class Account
     {
-        protected double sum;
+        protected double balance;
 
         public string Iban { get; set; }
 
-        public string OwnerName { get; set; }
+        public User Owner { get; set; }
 
-        public string OwnerSurname { get; set; }
-
-        public string OwnerEmail { get; set; }
-
-        public double Sum
+        public double Balance
         {
-            get => this.sum;
+            get => this.balance;
 
             set
             {
-                this.RecountPoints(this.sum);
-                this.sum = value;
+                this.RecountPoints(this.balance);
+                this.balance = value;
             }
         }
 

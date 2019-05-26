@@ -12,10 +12,10 @@ namespace BLL.Mappers
             var account = AccountFactory.Create(type);
 
             account.Iban = element.Iban;
-            account.Sum = element.Sum;
-            account.OwnerEmail = element.OwnerEmail;
-            account.OwnerName = element.OwnerName;
-            account.OwnerSurname = element.OwnerSurname;
+            account.Balance = element.Balance;
+            //account.OwnerEmail = element.OwnerEmail;
+            //account.OwnerName = element.OwnerName;
+            //account.OwnerSurname = element.OwnerSurname;
             account.IsClosed = false;
             account.Points = element.Points;
 
@@ -27,11 +27,11 @@ namespace BLL.Mappers
             return new DAL.Interface.DTO.DtoAccount
                        {
                            Iban = element.Iban,
-                           OwnerEmail = element.OwnerEmail,
-                           OwnerName = element.OwnerName,
-                           OwnerSurname = element.OwnerSurname,
+                           //OwnerEmail = element.OwnerEmail,
+                           //OwnerName = element.OwnerName,
+                           //OwnerSurname = element.OwnerSurname,
                            Points = element.Points,
-                           Sum = element.Sum,
+                           Balance = element.Balance,
                            IsClosed = element.IsClosed,
                            AccountType = element.Type.ToString()
                        };

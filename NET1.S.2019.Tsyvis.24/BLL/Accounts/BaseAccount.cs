@@ -12,7 +12,7 @@ namespace BLL.Accounts
 
         protected override void RecountPoints(double oldSumValue)
         {
-            if (this.Sum > oldSumValue)
+            if (this.Balance > oldSumValue)
             {
                 this.Points += this.DepositCost;
             }

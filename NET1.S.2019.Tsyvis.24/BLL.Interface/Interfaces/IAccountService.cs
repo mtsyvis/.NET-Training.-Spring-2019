@@ -11,7 +11,7 @@ namespace BLL.Interface.Interfaces
 
         void TransferAmount(string sourceIban, string destinationIban, double amount);
 
-        void OpenAccount(string ownerName, AccountType type, IAccountNumberGenerateService numberGenerateService);
+        void OpenAccount(int userId, AccountType type, IAccountNumberGenerateService numberGenerateService);
 
         void CloseAccount(string iban);
 

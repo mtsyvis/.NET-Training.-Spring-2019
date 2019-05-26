@@ -8,33 +8,32 @@ namespace DAL.Fake.Repositories
     {
         public DtoAccount GetAccount(string iban)
         {
-            return FakeListStorage.List.Find(ac => ac.Iban == iban);
+            return FakeListStorage.Accounts.Find(ac => ac.Iban == iban);
         }
 
-        public void AddAccount(DtoAccount account)
+        public void AddAccount(DtoAccount account, int userId)
         {
-            FakeListStorage.List.Add(account);
+
+
+            FakeListStorage.Accounts.Add(account);
         }
 
         public void UpdateAccount(DtoAccount account)
         {
             var item = GetAccount(account.Iban);
             item.AccountType = account.AccountType;
-            item.OwnerEmail = account.OwnerEmail;
-            item.OwnerName = account.OwnerName;
-            item.OwnerSurname = account.OwnerSurname;
-            item.Sum = account.Sum;
+            item.Balance = account.Balance;
             item.Points = account.Points;
         }
 
         public void DeleteAccount(string iban)
         {
-            FakeListStorage.List.Remove(GetAccount(iban));
+            FakeListStorage.Accounts.Remove(GetAccount(iban));
         }
 
         public IEnumerable<DtoAccount> GetAccounts()
         {
-            return FakeListStorage.List;
+            return FakeListStorage.Accounts;
         }
     }
 }

@@ -19,12 +19,13 @@ namespace ConsolePL
 
         static void Main(string[] args)
         {
-            IAccountService service = resolver.Get<IAccountService>();
-            IAccountNumberGenerateService creator = resolver.Get<IAccountNumberGenerateService>();
 
-            service.OpenAccount("Account owner 1", AccountType.Base, creator);
-            service.OpenAccount("Account owner 2", AccountType.Base, creator);
-            service.OpenAccount("Account owner 4", AccountType.Base, creator);
+            IAccountNumberGenerateService creator = resolver.Get<IAccountNumberGenerateService>();
+            IAccountService service = resolver.Get<IAccountService>();
+
+            //service.OpenAccount(5, AccountType.Base, creator);
+            //service.OpenAccount(6, AccountType.Gold, creator);
+            //service.OpenAccount(7, AccountType.Platinum, creator);
 
             var creditNumbers = service.GetAllAccounts().Select(acc => acc.Iban).ToArray();
 
@@ -35,7 +36,7 @@ namespace ConsolePL
 
             foreach (var item in service.GetAllAccounts())
             {
-                Console.WriteLine($"{item.Iban}  {nameof(item.Sum)} = {item.Sum}  {nameof(item.OwnerName)} = {item.OwnerName}");
+                Console.WriteLine($"{item.Iban}  {nameof(item.Balance)} = {item.Balance}  ");
             }
 
             foreach (var t in creditNumbers)
@@ -45,7 +46,7 @@ namespace ConsolePL
 
             foreach (var item in service.GetAllAccounts())
             {
-                Console.WriteLine($"{item.Iban}  {nameof(item.Sum)} = {item.Sum}  {nameof(item.OwnerName)} = {item.OwnerName}");
+                Console.WriteLine($"{item.Iban}  {nameof(item.Balance)} = {item.Balance}   = ");
             }
         }
     }

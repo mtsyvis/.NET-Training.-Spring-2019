@@ -35,7 +35,7 @@ namespace BLL.ServiceImplementation
 
             VerifyDataForAccountSumChange(account, amount);
 
-            account.Sum += amount;
+            account.Balance += amount;
 
             this.repository.UpdateAccount(this.mapper.Map(account));
         }
@@ -46,7 +46,7 @@ namespace BLL.ServiceImplementation
 
             VerifyDataForAccountSumChange(account, amount);
 
-            account.Sum -= amount;
+            account.Balance -= amount;
 
             this.repository.UpdateAccount(this.mapper.Map(account));
         }
@@ -57,18 +57,18 @@ namespace BLL.ServiceImplementation
             DepositAccount(destinationIban, amount);
         }
 
-        public void OpenAccount(string ownerName, AccountType type, IAccountNumberGenerateService numberGenerateService)
+        public void OpenAccount(int userId, AccountType type, IAccountNumberGenerateService numberGenerateService)
         {
             var account = new DtoAccount
                               {
                                   Iban = numberGenerateService.Generate(),
-                                  OwnerName = ownerName,
+                                  //Owner = ownerName,
                                   AccountType = type.ToString(),
-                                  Sum = 0,
+                                  Balance = 0,
                                   IsClosed = false
                               };
 
-            this.repository.AddAccount(account);
+            this.repository.AddAccount(account, userId);
         }
 
         public void CloseAccount(string iban)
