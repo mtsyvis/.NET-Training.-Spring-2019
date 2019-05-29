@@ -23,9 +23,9 @@ namespace ConsolePL
             IAccountNumberGenerateService creator = resolver.Get<IAccountNumberGenerateService>();
             IAccountService service = resolver.Get<IAccountService>();
 
-            //service.OpenAccount(5, AccountType.Base, creator);
-            //service.OpenAccount(6, AccountType.Gold, creator);
-            //service.OpenAccount(7, AccountType.Platinum, creator);
+            service.OpenAccount(5, AccountType.Base, creator);
+            service.OpenAccount(6, AccountType.Gold, creator);
+            service.OpenAccount(7, AccountType.Platinum, creator);
 
             var creditNumbers = service.GetAllAccounts().Select(acc => acc.Iban).ToArray();
 

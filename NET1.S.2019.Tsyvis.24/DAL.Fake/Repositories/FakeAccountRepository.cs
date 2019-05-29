@@ -11,7 +11,7 @@ namespace DAL.Fake.Repositories
             return FakeListStorage.Accounts.Find(ac => ac.Iban == iban);
         }
 
-        public void AddAccount(DtoAccount account, int userId)
+        public void AddAccount(DtoAccount account)
         {
 
 

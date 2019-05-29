@@ -29,6 +29,8 @@
 
         protected abstract int DepositCost { get; }
 
+        public abstract bool CanWithdraw(double amount);
+
         protected abstract void RecountPoints(double oldSumValue);
     }
 }

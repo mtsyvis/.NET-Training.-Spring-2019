@@ -7,7 +7,7 @@ namespace DAL.Interface.Interfaces
     {
         DtoAccount GetAccount(string iban);
 
-        void AddAccount(DtoAccount account, int userId);
+        void AddAccount(DtoAccount account);
 
         void UpdateAccount(DtoAccount account);
 

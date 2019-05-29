@@ -21,12 +21,15 @@ namespace BLL.ServiceImplementation
 
         private ILogger logger;
 
+        private IUnitOfWork unitOfWork;
+
         private AccountMapper mapper = new AccountMapper();
 
-        public AccountService(IAccountRepository repository, ILogger logger)
+        public AccountService(IAccountRepository repository, ILogger logger, IUnitOfWork unitOfWork)
         {
             this.repository = repository;
             this.logger = logger;
+            this.unitOfWork = unitOfWork;
         }
 
         public void DepositAccount(string iban, double amount)
@@ -36,8 +39,9 @@ namespace BLL.ServiceImplementation
             VerifyDataForAccountSumChange(account, amount);
 
             account.Balance += amount;
-
             this.repository.UpdateAccount(this.mapper.Map(account));
+
+            this.unitOfWork.Commit();
         }
 
         public void WithdrawAccount(string iban, double amount)
@@ -46,15 +50,21 @@ namespace BLL.ServiceImplementation
 
             VerifyDataForAccountSumChange(account, amount);
 
-            account.Balance -= amount;
+            if (!account.CanWithdraw(amount))
+            {
+               throw new NotEnoughMoneyInAccountException("Not enough money", account.Balance);
+            }
 
+            account.Balance -= amount;
             this.repository.UpdateAccount(this.mapper.Map(account));
+            this.unitOfWork.Commit();
         }
 
         public void TransferAmount(string sourceIban, string destinationIban, double amount)
         {
             WithdrawAccount(sourceIban, amount);
             DepositAccount(destinationIban, amount);
+            this.unitOfWork.Commit();
         }
 
         public void OpenAccount(int userId, AccountType type, IAccountNumberGenerateService numberGenerateService)
@@ -62,19 +72,21 @@ namespace BLL.ServiceImplementation
             var account = new DtoAccount
                               {
                                   Iban = numberGenerateService.Generate(),
-                                  //Owner = ownerName,
+                                  OwnerId = userId,
                                   AccountType = type.ToString(),
                                   Balance = 0,
                                   IsClosed = false
                               };
 
-            this.repository.AddAccount(account, userId);
+            this.repository.AddAccount(account);
+            this.unitOfWork.Commit();
         }
 
         public void CloseAccount(string iban)
         {
             var account = this.mapper.Map(this.repository.GetAccount(iban));
             account.IsClosed = true;
+            this.unitOfWork.Commit();
         }
 
         public IEnumerable<Account> GetAllAccounts()

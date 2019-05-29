@@ -4,14 +4,14 @@ namespace BLL.Interface.Exceptions
 {
     public class NotEnoughMoneyInAccountException : Exception
     {
-        public double Sum { get; }
+        public double Balance { get; }
 
-        NotEnoughMoneyInAccountException(string message, double sum)
+        public NotEnoughMoneyInAccountException(string message, double balance)
             : base(message)
         {
-            Sum = sum;
+            Balance = balance;
         }
 
-        NotEnoughMoneyInAccountException(string message) : base(message) { }
+        public NotEnoughMoneyInAccountException(string message) : base(message) { }
     }
 }

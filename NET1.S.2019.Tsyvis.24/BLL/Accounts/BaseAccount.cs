@@ -21,5 +21,10 @@ namespace BLL.Accounts
                 this.Points -= this.WithdrawCost;
             }
         }
+
+        public override bool CanWithdraw(double amount)
+        {
+            return this.Balance - amount > 0;
+        }
     }
 }

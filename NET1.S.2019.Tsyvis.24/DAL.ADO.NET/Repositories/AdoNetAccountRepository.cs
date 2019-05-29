@@ -63,7 +63,7 @@ namespace DAL.ADO.NET.Repositories
                                       OwnerId = (int)reader["OwnerId"],
                                       Balance = (double)(decimal)reader["Balance"],
                                       Points = (double)(decimal)reader["BonusPoints"],
-                                      AccountType = (string)reader["AccountType"],
+                                      AccountType = (string)reader["Type"],
                                       IsClosed = (bool)reader["IsClosed"]
                                   };
 
@@ -77,7 +77,7 @@ namespace DAL.ADO.NET.Repositories
         /// </summary>
         /// <param name="account">The account.</param>
         /// <param name="userId">The user identifier.</param>
-        public void AddAccount(DtoAccount account, int userId)
+        public void AddAccount(DtoAccount account)
         {
             var sqlConnection = new SqlConnection(this.connectionString);
             var sqlCommand = new SqlCommand("InsertAccount", sqlConnection) { CommandType = CommandType.StoredProcedure };
@@ -85,7 +85,7 @@ namespace DAL.ADO.NET.Repositories
             sqlCommand.Parameters.Add(new SqlParameter("@Iban", SqlDbType.NVarChar, 200));
             sqlCommand.Parameters["@Iban"].Value = account.Iban;
             sqlCommand.Parameters.Add(new SqlParameter("@OwnerId", SqlDbType.Int, 4));
-            sqlCommand.Parameters["@OwnerId"].Value = userId;
+            sqlCommand.Parameters["@OwnerId"].Value = account.OwnerId;
             sqlCommand.Parameters.Add(new SqlParameter("@Balance", SqlDbType.Decimal));
             sqlCommand.Parameters["@Balance"].Value = account.Balance;
             sqlCommand.Parameters.Add(new SqlParameter("@BonusPoints", SqlDbType.Decimal));
@@ -129,7 +129,7 @@ namespace DAL.ADO.NET.Repositories
 
         public void DeleteAccount(string iban)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();    
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace DAL.ADO.NET.Repositories
                                           OwnerId = (int)reader["OwnerId"],
                                           Balance = (double)(decimal)reader["Balance"],
                                           Points = (double)(decimal)reader["BonusPoints"],
-                                          AccountType = (string)reader["AccountType"],
+                                          AccountType = (string)reader["Type"],
                                           IsClosed = (bool)reader["IsClosed"]
                                       };
 
